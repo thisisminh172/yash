@@ -10,7 +10,7 @@ namespace yash.Data.Entities
 
         public string GoldCarat { get; set; }//14k 18k 24k
 
-        public float Price { get; set; }
+        public decimal Price { get; set; }
 
 
         public List<Item> Items { get; set; }
