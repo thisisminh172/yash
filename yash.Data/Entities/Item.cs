@@ -8,9 +8,7 @@ namespace yash.Data.Entities
     {
         public int Id { get; set; }
 
-        public int Pairs { get; set; }//not clear
-
-        public int BrandId { get; set; }//FK
+        //public int BrandId { get; set; }//FK
 
         public int Quantity { get; set; }//Storage
 
@@ -22,19 +20,22 @@ namespace yash.Data.Entities
 
         public int ProductId { get; set; }//FK
 
-        public int GoldTypeId { get; set; }//FK
+        public int GoldId { get; set; }//FK
 
-        public int DiamondTypeId { get; set; }// does not required, nullable
+        public int DiamondId { get; set; }// does not required, nullable
 
         public float GoldWeight { get; set; }
 
         public int WastageInPercentage { get; set; }
 
-        public float TotalMaking { get; set; }//total price
+        public decimal TotalMaking { get; set; }//total price
 
-        public int Size { get; set; }
+        public int RingSizeId { get; set; }
+
+        public RingSize Size { get; set; }
 
         public Gold Gold { get; set; }
+        public Diamond Diamond { get; set; }
         public Certification Certification { get; set; }
         public ProductType Product { get; set; }
         public Brand Brand { get; set; }
