@@ -24,11 +24,13 @@ namespace yash.Data.Entities
 
         public int DiamondId { get; set; }// does not required, nullable
 
-        public float GoldWeight { get; set; }
+        public float DiamondCarat { get; set; }
+
+        public float GoldWeight { get; set; }// ounce
 
         public int WastageInPercentage { get; set; }
 
-        public decimal TotalMaking { get; set; }//total price
+        public float TotalMaking { get; set; }//total price
 
         public int RingSizeId { get; set; }
 

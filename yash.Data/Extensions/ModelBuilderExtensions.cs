@@ -42,6 +42,38 @@ namespace yash.Data.Extensions
                 new RingSize() { Id = 24, SizeNumber = 29 },
                 new RingSize() { Id = 25, SizeNumber = 30 }
                 );
+            modelBuilder.Entity<Gold>().HasData(
+                new Gold() { Id=1,GoldCarat="14kt",Price=1034.8f},
+                new Gold() { Id=2,GoldCarat="18kt",Price=1338.9f}
+                );
+            modelBuilder.Entity<ProductType>().HasData(
+                new ProductType() { Id=1,Name="RINGS"},
+                new ProductType() { Id=2,Name="EARRINGS"},
+                new ProductType() { Id=3,Name="PENDANTS"}
+                );
+            modelBuilder.Entity<Category>().HasData(
+                new Category() { Id=1,CategoryName="Anniversary"},
+                new Category() { Id=2,CategoryName="Birthday"},
+                new Category() { Id=3,CategoryName="Wedding"},
+                new Category() { Id=4,CategoryName="Engagement"}
+                );
+            modelBuilder.Entity<Diamond>().HasData(
+                new Diamond() {Id=1,DiamondShape="round",Price=7291f },
+                new Diamond() {Id=2,DiamondShape="princess",Price=4799f },
+                new Diamond() {Id=3,DiamondShape="oval",Price=5362f },
+                new Diamond() {Id=4,DiamondShape="cushion",Price=4229f },
+                new Diamond() {Id=5,DiamondShape="pear",Price=5802f },
+                new Diamond() {Id=6,DiamondShape="radiant",Price=4443f },
+                new Diamond() {Id=7,DiamondShape="emerald",Price=4476f },
+                new Diamond() {Id=8,DiamondShape="asscher",Price=4137f },
+                new Diamond() {Id=9,DiamondShape="marquise",Price=5596f },
+                new Diamond() {Id=10,DiamondShape="heart",Price=5536f }
+                );
+            modelBuilder.Entity<Certification>().HasData(
+                new Certification() { Id=1,CertifyType="BIS Hallmark",LinkUrl= "http://www.bis.org.in/" },
+                new Certification() { Id=2,CertifyType="SGL",LinkUrl= "https://sgl-labs.com/" },
+                new Certification() { Id=3,CertifyType="IGI",LinkUrl= "https://www.igi.org/" }
+                );
         }
     }
 }
