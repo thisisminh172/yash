@@ -11,7 +11,7 @@ namespace yash.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<RingSize> builder)
         {
-            builder.ToTable("Sizes");
+            builder.ToTable("RingSizes");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseIdentityColumn();
             builder.Property(x => x.SizeNumber).IsRequired();
