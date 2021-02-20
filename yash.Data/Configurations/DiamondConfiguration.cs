@@ -7,18 +7,13 @@ using yash.Data.Entities;
 
 namespace yash.Data.Configurations
 {
-    public class CartConfiguration : IEntityTypeConfiguration<Cart>
+    public class DiamondConfiguration : IEntityTypeConfiguration<Diamond>
     {
-        public void Configure(EntityTypeBuilder<Cart> builder)
+        public void Configure(EntityTypeBuilder<Diamond> builder)
         {
-            builder.ToTable("Carts");
+            builder.ToTable("Diamonds");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseIdentityColumn();
-
-
-
-            builder.HasOne(x => x.Item).WithMany(x => x.Carts).HasForeignKey(x => x.ItemId);
-            builder.HasOne(x => x.User).WithMany(x => x.Carts).HasForeignKey(x => x.UserId);
         }
     }
 }

@@ -8,11 +8,9 @@ namespace yash.Data.Entities
     {
         public int Id { get; set; }
 
-        public string DiamondType { get; set; }
+        public string DiamondShape { get; set; }
 
-        public string DiamondCarat { get; set; }
-
-        public float Price { get; set; }
+        public float Price { get; set; }//per carat
 
         public List<Item> Items { get; set; }
     }

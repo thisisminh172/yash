@@ -8,9 +8,9 @@ namespace yash.Data.Entities
     {
         public int Id { get; set; }
 
-        public string GoldCarat { get; set; }//14k 18k 24k
+        public string GoldCarat { get; set; }//14kt 18kt
 
-        public float Price { get; set; }
+        public float Price { get; set; }// per ounce, USD
 
 
         public List<Item> Items { get; set; }

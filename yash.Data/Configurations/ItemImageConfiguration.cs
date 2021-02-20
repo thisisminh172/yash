@@ -7,18 +7,16 @@ using yash.Data.Entities;
 
 namespace yash.Data.Configurations
 {
-    public class CartConfiguration : IEntityTypeConfiguration<Cart>
+    public class ItemImageConfiguration : IEntityTypeConfiguration<ItemImage>
     {
-        public void Configure(EntityTypeBuilder<Cart> builder)
+        public void Configure(EntityTypeBuilder<ItemImage> builder)
         {
-            builder.ToTable("Carts");
+            builder.ToTable("ItemImages");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseIdentityColumn();
+            builder.Property(x => x.ItemImageUrl).HasMaxLength(200);
 
-
-
-            builder.HasOne(x => x.Item).WithMany(x => x.Carts).HasForeignKey(x => x.ItemId);
-            builder.HasOne(x => x.User).WithMany(x => x.Carts).HasForeignKey(x => x.UserId);
+            builder.HasOne(x => x.Item).WithMany(x => x.ItemImages).HasForeignKey(x => x.ItemId);
         }
     }
 }
