@@ -4,4 +4,16 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Catalog\Items\" />
+    <Folder Include="Catalog\Categories\" />
+    <Folder Include="Catalog\Golds\" />
+    <Folder Include="Catalog\Diamonds\" />
+    <Folder Include="Catalog\Certifications\" />
+    <Folder Include="Catalog\Carts\" />
+    <Folder Include="Catalog\RingSizes\" />
+    <Folder Include="Catalog\Orders\" />
+    <Folder Include="Catalog\ProductTypes\" />
+  </ItemGroup>
+
 </Project>
