@@ -52,10 +52,10 @@ namespace yash.Data.Extensions
                 new ProductType() { Id=3,Name="PENDANTS"}
                 );
             modelBuilder.Entity<Category>().HasData(
-                new Category() { Id=1,CategoryName="Anniversary"},
-                new Category() { Id=2,CategoryName="Birthday"},
-                new Category() { Id=3,CategoryName="Wedding"},
-                new Category() { Id=4,CategoryName="Engagement"}
+                new Category() { Id=1,Name="Anniversary"},
+                new Category() { Id=2, Name = "Birthday"},
+                new Category() { Id=3, Name = "Wedding"},
+                new Category() { Id=4, Name = "Engagement"}
                 );
             modelBuilder.Entity<Diamond>().HasData(
                 new Diamond() {Id=1,DiamondShape="round",Price=7291f },
@@ -70,9 +70,9 @@ namespace yash.Data.Extensions
                 new Diamond() {Id=10,DiamondShape="heart",Price=5536f }
                 );
             modelBuilder.Entity<Certification>().HasData(
-                new Certification() { Id=1,CertifyType="BIS Hallmark",LinkUrl= "http://www.bis.org.in/" },
-                new Certification() { Id=2,CertifyType="SGL",LinkUrl= "https://sgl-labs.com/" },
-                new Certification() { Id=3,CertifyType="IGI",LinkUrl= "https://www.igi.org/" }
+                new Certification() { Id=1, Name = "BIS Hallmark",LinkUrl= "http://www.bis.org.in/" },
+                new Certification() { Id=2, Name = "SGL",LinkUrl= "https://sgl-labs.com/" },
+                new Certification() { Id=3, Name = "IGI",LinkUrl= "https://www.igi.org/" }
                 );
         }
     }
