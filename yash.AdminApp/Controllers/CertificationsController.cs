@@ -7,36 +7,36 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using yash.Data.Entities;
 using yash.Utilities.Constants;
-using yash.ViewModels.Catalog.Categories;
+using yash.ViewModels.Catalog.Certifications;
 
 namespace yash.AdminApp.Controllers
 {
-    public class CategoriesController : Controller
+    public class CertificationsController : Controller
     {
-        private string uri = UriConstants.URI_HOST_PORT_NUMBER_OF_API + "api/Categories/";
+        private string uri = UriConstants.URI_HOST_PORT_NUMBER_OF_API + "api/Certifications/";
         public IActionResult Index()
         {
             HttpClient httpclient = new HttpClient();
-            var listCategories = JsonConvert.DeserializeObject<List<Category>>(httpclient.GetStringAsync(uri).Result);
-            return View(listCategories);
+            var tempList = JsonConvert.DeserializeObject<List<Certification>>(httpclient.GetStringAsync(uri).Result);
+            return View(tempList);
         }
         [HttpGet]
         public IActionResult Details(int Id)
         {
             HttpClient httpclient = new HttpClient();
-            var category = JsonConvert.DeserializeObject<Category>(httpclient.GetStringAsync(uri + Id).Result);
-            return View(category);
+            var temp = JsonConvert.DeserializeObject<Certification>(httpclient.GetStringAsync(uri + Id).Result);
+            return View(temp);
         }
 
         [HttpGet]
         public IActionResult Edit(int Id)
         {
             HttpClient httpclient = new HttpClient();
-            var category = JsonConvert.DeserializeObject<Category>(httpclient.GetStringAsync(uri + Id).Result);
+            var category = JsonConvert.DeserializeObject<Certification>(httpclient.GetStringAsync(uri + Id).Result);
             return View(category);
         }
         [HttpPost]
-        public IActionResult Edit(CategoryUpdateRequest request)
+        public IActionResult Edit(CertificationUpdateRequest request)
         {
             HttpClient httpclient = new HttpClient();
             var result = httpclient.PutAsJsonAsync(uri, request).Result;
@@ -50,7 +50,7 @@ namespace yash.AdminApp.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(CategoryCreateRequest request)
+        public IActionResult Create(CertificationCreateRequest request)
         {
             HttpClient httpclient = new HttpClient();
             var result = httpclient.PostAsJsonAsync(uri, request).Result;
@@ -65,8 +65,5 @@ namespace yash.AdminApp.Controllers
             return RedirectToAction("Index");
 
         }
-
-
-
     }
 }

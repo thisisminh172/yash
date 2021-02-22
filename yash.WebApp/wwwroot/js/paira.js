@@ -1,0 +1,7 @@
+/**
+ * Author -> Ennop
+ * Email -> support@themetidy.com
+ * Version -> 1.0
+ */
+
+!function(i,n,t){i(function(){a.initDomReady()}),i(n).load(function(){a.initWindowReady()});var a={initDomReady:function(){this.initDomLoadClass()},initWindowReady:function(){this.initWindowLoadClass(),this.initToolTip(),this.initIE10ViewPortHack()},initToolTip:function(){var n=i('[data-toggle="tooltip"]');n.length>0&&n.tooltip()},initIE10ViewPortHack:function(){"use strict";if(navigator.userAgent.match(/IEMobile\/10\.0/)){var i=t.createElement("style");i.appendChild(t.createTextNode("@-ms-viewport{width:auto!important}")),t.querySelector("head").appendChild(i)}},initWindowLoadClass:function(){var n=i(".parallax");n.length>0&&n.parallax("50%",.3)},initDomLoadClass:function(){var n=i(t);n.on("click",".paira-mega-menu .paira-dropdown-menu",function(i){i.stopPropagation()}),n.on("click",".paira-mega-menu .paira-angle-down",function(n){n.preventDefault(),i(this).parents(".paira-dropdown").find(".paira-dropdown-menu").toggleClass("active")}),n.on("click",".menu-wrap a",function(){i(".menu-wrap").toggleClass("menu-icon")}),n.on("click",".menu-wrap a",function(){i("main").toggleClass("push-left")}),n.on("click",".paira-quantity-group .up-down-q",function(){var n=i(this).attr("data-direction"),t=i(this).parent().children('input[type="text"]'),a=parseInt(t.val());if("up"==n)a++,t.val(a);else if("down"==n){if(1===a)return;a--,t.val(a)}})}}}(window.jQuery,window,document);
