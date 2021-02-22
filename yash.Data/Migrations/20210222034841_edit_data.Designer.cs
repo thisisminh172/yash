@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using yash.Data.EF;
 
 namespace yash.Data.Migrations
 {
     [DbContext(typeof(YashDbContext))]
-    partial class YashDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210222034841_edit_data")]
+    partial class edit_data
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
