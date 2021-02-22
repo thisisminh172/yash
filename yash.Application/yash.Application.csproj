@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Catalog\Items\" />
-    <Folder Include="Catalog\Categories\" />
     <Folder Include="Catalog\Golds\" />
     <Folder Include="Catalog\Diamonds\" />
     <Folder Include="Catalog\Certifications\" />
@@ -14,6 +13,10 @@
     <Folder Include="Catalog\RingSizes\" />
     <Folder Include="Catalog\Orders\" />
     <Folder Include="Catalog\ProductTypes\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\yash.Data\yash.Data.csproj" />
   </ItemGroup>
 
 </Project>

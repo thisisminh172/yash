@@ -9,7 +9,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\yash.Application\yash.Application.csproj" />
+    <ProjectReference Include="..\yash.Data\yash.Data.csproj" />
+    <ProjectReference Include="..\yash.ViewModels\yash.ViewModels.csproj" />
   </ItemGroup>
 
 
