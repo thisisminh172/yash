@@ -37,7 +37,6 @@ namespace yash.Data.EF
         }
         public DbSet<Admin> Admins { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<Brand> Brands { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Certification> Certifications { get; set; }
         public DbSet<Diamond> Diamonds { get; set; }
@@ -47,6 +46,7 @@ namespace yash.Data.EF
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Cart> Carts { get; set; }
+        public DbSet<RingSize> RingSizes { get; set; }
 
     }
 }

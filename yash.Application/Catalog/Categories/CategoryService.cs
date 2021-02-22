@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using yash.Data.EF;
 using yash.Data.Entities;
+using yash.ViewModels.Catalog.Categories;
 
 namespace yash.Application.Catalog.Categories
 {
@@ -16,17 +17,17 @@ namespace yash.Application.Catalog.Categories
         {
             _context = context;
         }
-        public async Task<int> Create(Category newCategory)
+        public async Task<int> Create(CategoryCreateRequest newCategory)
         {
-            var category = await _context.Categories.FirstOrDefaultAsync(c => c.Name == newCategory.Name);
-            if (category == null)
+            var category = new Category()
             {
-                _context.Categories.Add(newCategory);
-                await _context.SaveChangesAsync();
-                return newCategory.Id;
-            }
-            return -1;
+                Name = newCategory.Name
+            };
+            _context.Categories.Add(category);
+            await _context.SaveChangesAsync();
+            return category.Id;
         }
+          
 
         public async Task<int> Delete(int categoryId)
         {
@@ -47,14 +48,14 @@ namespace yash.Application.Catalog.Categories
             return category;
         }
 
-        public async Task<int> Update(Category updateCategory)
+        public async Task<int> Update(CategoryUpdateRequest updateCategory)
         {
             var category = await _context.Categories.FindAsync(updateCategory.Id);
             if (category == null)
             {
                 return -1;
             }
-            _context.Categories.Update(updateCategory);
+            category.Name = updateCategory.Name;
             return await _context.SaveChangesAsync();
         }
     }

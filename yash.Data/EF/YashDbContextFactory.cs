@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using yash.Utilities.Constants;
 
 namespace yash.Data.EF
 {
@@ -17,7 +18,11 @@ namespace yash.Data.EF
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-            var connectionString = configuration.GetConnectionString("YashDb");
+            //var connectionString = configuration.GetConnectionString(SystemConstants.MainConnectionString);
+
+
+            //day la chuoi ket noi lay tu const>>>>>>>>>>>>>>>>>>>>>>
+            var connectionString = SystemConstants.ConnectionString;
 
             var optionsBuilder = new DbContextOptionsBuilder<YashDbContext>();
             optionsBuilder.UseSqlServer(connectionString);

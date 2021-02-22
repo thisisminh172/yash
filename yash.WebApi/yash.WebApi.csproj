@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\yash.Application\yash.Application.csproj" />
     <ProjectReference Include="..\yash.Data\yash.Data.csproj" />
+    <ProjectReference Include="..\yash.Utilities\yash.Utilities.csproj" />
     <ProjectReference Include="..\yash.ViewModels\yash.ViewModels.csproj" />
   </ItemGroup>
 
