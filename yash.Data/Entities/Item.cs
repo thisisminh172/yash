@@ -35,7 +35,7 @@ namespace yash.Data.Entities
 
         public int RingSizeId { get; set; }
 
-        public RingSize Size { get; set; }
+        public RingSize RingSize { get; set; }
 
         public Gold Gold { get; set; }
         public Diamond Diamond { get; set; }

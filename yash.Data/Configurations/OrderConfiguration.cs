@@ -14,10 +14,10 @@ namespace yash.Data.Configurations
             builder.ToTable("Orders");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseIdentityColumn();
-            builder.Property(x => x.ShipEmail).IsRequired().IsUnicode(false).HasMaxLength(100);
-            builder.Property(x => x.ShipAddress).IsRequired().HasMaxLength(200);
-            builder.Property(x => x.ShipName).IsRequired().HasMaxLength(200);
-            builder.Property(x => x.ShipPhoneNumber).IsRequired().HasMaxLength(200);
+            builder.Property(x => x.ShipEmail).IsUnicode(false).HasMaxLength(100);
+            builder.Property(x => x.ShipAddress).HasMaxLength(200);
+            builder.Property(x => x.ShipName).HasMaxLength(200);
+            builder.Property(x => x.ShipPhoneNumber).HasMaxLength(200);
             builder.HasOne(x => x.User).WithMany(x => x.Orders).HasForeignKey(x => x.UserId);
         }
     }

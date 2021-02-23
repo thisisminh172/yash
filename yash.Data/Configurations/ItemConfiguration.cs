@@ -14,18 +14,15 @@ namespace yash.Data.Configurations
             builder.ToTable("Items");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseIdentityColumn();
-            builder.Property(x => x.Quantity).IsRequired().HasDefaultValue(0);
-            builder.Property(x => x.GoldWeight).IsRequired().HasDefaultValue(1);
-            builder.Property(x => x.WastageInPercentage).IsRequired().HasDefaultValue(20);
-            builder.Property(x => x.ProductId).IsRequired();
+            builder.Property(x => x.Quantity).HasDefaultValue(0);
+            builder.Property(x => x.GoldWeight).HasDefaultValue(1);
+            builder.Property(x => x.WastageInPercentage).HasDefaultValue(20);
+            
 
 
             //gold and diamond>>>>>>>>>>>>
-            builder.Property(x => x.GoldId).IsRequired().HasDefaultValue(2);
-            //builder.Property(x => x.BrandId).IsRequired();
-            builder.Property(x => x.CertifyId).IsRequired();
-            builder.Property(x => x.CategoryId).IsRequired();
-            builder.Property(x => x.TotalMaking).IsRequired();
+            builder.Property(x => x.GoldId).HasDefaultValue(2);
+           
 
 
             //foreign key>>>>>>>>>>>>>>>
@@ -35,6 +32,7 @@ namespace yash.Data.Configurations
             builder.HasOne(x => x.Gold).WithMany(x => x.Items).HasForeignKey(x => x.GoldId);
             builder.HasOne(x => x.Diamond).WithMany(x => x.Items).HasForeignKey(x => x.DiamondId);
             builder.HasOne(x => x.Certification).WithMany(x => x.Items).HasForeignKey(x => x.CertifyId);
+            builder.HasOne(x => x.RingSize).WithMany(x => x.Items).HasForeignKey(x => x.RingSizeId);
 
 
         }
