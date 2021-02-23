@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using yash.Data.EF;
 
 namespace yash.Data.Migrations
 {
     [DbContext(typeof(YashDbContext))]
-    partial class YashDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210223074034_edit_cart_table")]
+    partial class edit_cart_table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,6 +85,23 @@ namespace yash.Data.Migrations
                             Password = "123",
                             Role = false
                         });
+                });
+
+            modelBuilder.Entity("yash.Data.Entities.Brand", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Brands");
                 });
 
             modelBuilder.Entity("yash.Data.Entities.Cart", b =>
@@ -322,6 +341,9 @@ namespace yash.Data.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("BrandId")
+                        .HasColumnType("int");
+
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -367,6 +389,8 @@ namespace yash.Data.Migrations
                         .HasDefaultValue(20);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BrandId");
 
                     b.HasIndex("CategoryId");
 
@@ -724,6 +748,10 @@ namespace yash.Data.Migrations
 
             modelBuilder.Entity("yash.Data.Entities.Item", b =>
                 {
+                    b.HasOne("yash.Data.Entities.Brand", "Brand")
+                        .WithMany()
+                        .HasForeignKey("BrandId");
+
                     b.HasOne("yash.Data.Entities.Category", "Category")
                         .WithMany("Items")
                         .HasForeignKey("CategoryId")
