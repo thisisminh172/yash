@@ -40,8 +40,7 @@ namespace yash.Data.Entities
         public Gold Gold { get; set; }
         public Diamond Diamond { get; set; }
         public Certification Certification { get; set; }
-        public ProductType Product { get; set; }
-        public Brand Brand { get; set; }
+        public ProductType ProductType { get; set; }
         public Category Category { get; set; }
 
         public List<ItemImage> ItemImages { get; set; }

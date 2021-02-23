@@ -29,7 +29,7 @@ namespace yash.Data.Configurations
 
 
             //foreign key>>>>>>>>>>>>>>>
-            builder.HasOne(x => x.Product).WithMany(x => x.Items).HasForeignKey(x => x.ProductId);
+            builder.HasOne(x => x.ProductType).WithMany(x => x.Items).HasForeignKey(x => x.ProductId);
             //builder.HasOne(x => x.Brand).WithMany(x => x.Items).HasForeignKey(x => x.BrandId);
             builder.HasOne(x => x.Category).WithMany(x => x.Items).HasForeignKey(x => x.CategoryId);
             builder.HasOne(x => x.Gold).WithMany(x => x.Items).HasForeignKey(x => x.GoldId);

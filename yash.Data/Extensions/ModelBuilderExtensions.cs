@@ -74,6 +74,7 @@ namespace yash.Data.Extensions
                 new Certification() { Id=2, Name = "SGL",LinkUrl= "https://sgl-labs.com/" },
                 new Certification() { Id=3, Name = "IGI",LinkUrl= "https://www.igi.org/" }
                 );
+
         }
     }
 }
