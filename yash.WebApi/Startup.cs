@@ -16,6 +16,7 @@ using yash.Application.Catalog.Categories;
 using yash.Application.Catalog.Certifications;
 using yash.Application.Catalog.Diamonds;
 using yash.Application.Catalog.Golds;
+using yash.Application.Catalog.Items;
 using yash.Application.Catalog.ProductTypes;
 using yash.Application.Catalog.RingSizes;
 using yash.Data.EF;
@@ -53,6 +54,7 @@ namespace yash.WebApi
             services.AddTransient<IProductTypeService, ProductTypeService>();
             services.AddTransient<IRingSizeService, RingSizeService>();
             services.AddTransient<ICartService, CartService>();
+            services.AddTransient<IItemService, ItemService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

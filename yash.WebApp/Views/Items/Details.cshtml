@@ -1,0 +1,147 @@
+﻿@model ItemDetailViewModel
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--=================== Product Template ===================-->
+<main class="product-page">
+    <section class="single-product">
+        <div class="container-fluid">
+            <div class="row">
+                <h1 class="page-header text-center paira-product-title">@Model.Item.Name</h1>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="row paira-product border-bottom">
+                        <div class="col-md-6 col-sm-12 col-xs-12 border-right padding-clear">
+                            <div class="single-variants-product">
+                                <div class="single-product-image-list paira-single-product-image">
+                                    <div id="product-slider" class="carousel slide" data-ride="carousel">
+                                        <!-- Wrapper for slides -->
+                                        <div class="carousel-inner" role="listbox">
+                                            @foreach (var img in Model.Item.itemImageViewModels)
+                                            {
+                                                @if (img.IsDefault)
+                                                {
+                                                    <div class="item active">
+                                                        <img src="/@img.ItemImageUrl" alt="" class="img-responsive paira-product-image" />
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="item">
+                                                        <img src="/@img.ItemImageUrl" alt="" class="img-responsive paira-product-image" />
+                                                    </div>
+                                                }
+                                            }
+                                            
+
+                                        </div>
+                                        <div class="product-slider-fix">
+                                            <!-- Controls -->
+                                            <a class="" href="#product-slider" role="button" data-slide="prev">
+                                                <span class="arrow-left" aria-hidden="true"></span>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                            <a class="pull-right" href="#product-slider" role="button" data-slide="next">
+                                                <span class="arrow-right" aria-hidden="true"></span>
+                                                <span class="sr-only">Next</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12 product-padding">
+                            
+                            <h3 class="margin-bottom-20 paira-price-preview">
+                                <span class="paira-default-price"><span class="money">$@Model.Item.TotalMaking</span></span>
+                            </h3>
+                            <div class="single-product-details paira-single-product-details margin-top-25">
+                                <p><label><b>Certification :</b></label> @Model.Item.CertifyName</p>
+                                <p class="margin-bottom-20"><label><b>Type :</b></label> @Model.Item.ProductName</p>
+                                <p class="margin-bottom-20"><label><b>Category :</b></label> @Model.Item.CategoryName</p>
+                                <p class="margin-bottom-20"><label><b>Gold :</b></label> @Model.Item.GoldCaratName</p>
+                                <p class="margin-bottom-20"><label><b>Diamond shape:</b></label> @Model.Item.DiamondShapeName</p>
+                                <p class="margin-bottom-20"><label><b>Diamond carat :</b></label> @Model.Item.DiamondCarat</p>
+                            </div>
+                            @*<div class="option-switch-dropdown">
+                                <div class="select clearfix">
+                                    <div class="selector-wrapper">
+                                        <label for="product-select-option-0">Size</label>
+                                        <select class="single-option-selector" data-option="option1" id="product-select-option-0">
+                                            <option value="s">s</option>
+                                            <option value="m">m</option>
+                                            <option value="l">l</option>
+                                            <option value="xl">xl</option>
+                                        </select>
+                                    </div>
+                                    <div class="selector-wrapper">
+                                        <label for="product-select-option-1">Color</label>
+                                        <select class="single-option-selector" data-option="option2" id="product-select-option-1">
+                                            <option value="green">green</option>
+                                            <option value="blue">blue</option>
+                                            <option value="grey">grey</option>
+                                            <option value="yellow">yellow</option>
+                                            <option value="black">black</option>
+                                        </select>
+                                    </div>
+                                    <div class="selector-wrapper">
+                                        <label for="product-select-option-2">Material</label>
+                                        <select class="single-option-selector" data-option="option3" id="product-select-option-2">
+                                            <option value="flax">flax</option>
+                                            <option value="wool">wool</option>
+                                            <option value="ramie">ramie</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>*@
+                            @*<div class="full-width overflow-h border-bottom">
+                                <div class="paira-quantity-group product-quantity-group">
+                                    <label>Quantity</label>
+                                    <input type="text" value="1" class="paira-single-quantity text-center" placeholder="1">
+                                    <span class="up-down-q up" data-direction="up"><i class="fa fa-angle-up"></i></span>
+                                    <span class="up-down-q down" data-direction="down"><i class="fa fa-angle-down"></i></span>
+                                </div>
+                            </div>*@
+                            <div class="single-product-buttons">
+                                <a href="cart.html" class="btn btn-default btn-block btn-lg margin-top-30 margin-right-10"><i class="fa fa-shopping-cart"></i> Add To Cart</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs single-product-tabs text-center border-bottom  padding-top-20 padding-bottom-20 text-capitalize">
+                            <li class="active col-md-6 col-sm-6 col-xs-12 padding-clear"><a href="#description" data-toggle="tab"><span>Description</span></a></li>
+                            <li class="col-md-6 col-sm-6 col-xs-12 padding-clear"><a href="#size-chart" data-toggle="tab"><span>Size Chart</span></a></li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane active paira-gap-3 paira-gap-4" id="description">
+                                <h4>
+                                    Why choose <a href="https://www.themetidy.com/">ThemeTidy</a>
+                                </h4>
+                                <p>We just don't build your website we build your business. We Building Your Business with Strong Branding. Our helpful support team is always on standby to help you with any questions or issues. We have a great team to build your business.</p>
+                                <p> </p>
+                                <h4><span>Latest &amp; most popular <a href="https://www.themetidy.com/">Free Shopify Themes</a></span></h4>
+                                <p>The best reviewed and most popular <a href="https://www.themetidy.com/">Free Shopify Themes</a> ever. Our best selling <a href="https://www.themetidy.com/">Free Shopify Themes</a>. Ready To Take Your <a href="https://www.themetidy.com/">Free Shopify Themes</a> Next Level? Give Your Site A Beautiful Template Design To Gather More Visitors. Check <a href="https://www.themetidy.com/">ThemeTidy</a> awesome <a href="https://www.themetidy.com/">Free Shopify Themes</a> Collections.</p>
+                                <p> </p>
+                                <h4><span><a href="https://www.themetidy.com/">Paira Shopify</a> theme Framework</span></h4>
+                                <p>Paira Is A Modern, User-Friendly, Highly Customizable And Easy To Integrate Solution To Build Your Next Shopify Website Based On Your Idea. Paira Is A Highly Functional And Advance Theme Option <a href="https://www.themetidy.com/">Free Paira Shopify Framework</a>. Why Paira Is The Best &amp; Most Popular <a href="https://www.themetidy.com/">Free Paira Shopify Framework</a> Because <a href="https://www.themetidy.com/">Free Paira Shopify Framework</a> Have Most Advance Feature List, Coding Simplicity, Unique Option, Easy To Integrate Any Design, Simple And Advance Framework Architecture Design. After Lot Of Research, <a href="https://www.themetidy.com/">ThemeTidy</a> Team Finally Release <a href="https://www.themetidy.com/">Free Paira Shopify Framework</a>.</p>
+                                <p> </p>
+                                <h4><span><a href="https://www.themetidy.com/">ThemeTidy</a> customer services</span></h4>
+                                <p><span>*** <a href="https://www.themetidy.com/">ThemeTidy</a> installation services &amp; setup</span></p>
+                                <p><span>*** <a href="https://www.themetidy.com/">ThemeTidy</a> design services</span></p>
+                                <p><span>*** <a href="https://www.themetidy.com/">ThemeTidy</a> development services</span></p>
+                                <p><span>*** <a href="https://www.themetidy.com/">ThemeTidy</a> 24/7 customer support</span></p>
+                            </div>
+                            <div class="tab-pane paira-gap-3 paira-gap-4" id="size-chart">
+                                <img src="images/size-chart.jpg" class="img-responsive" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
