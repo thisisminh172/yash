@@ -8,5 +8,7 @@ namespace yash.Data.Entities
     {
         public int Id { get; set; }
         public int SizeNumber { get; set; }
+        public List<Item> Items { get; set; }
+
     }
 }

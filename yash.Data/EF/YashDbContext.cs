@@ -19,7 +19,6 @@ namespace yash.Data.EF
             modelBuilder.ApplyConfiguration(new CartConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new AdminConfiguration());
-            modelBuilder.ApplyConfiguration(new BrandConfiguration());
             modelBuilder.ApplyConfiguration(new CertificationConfiguration());
             modelBuilder.ApplyConfiguration(new DiamondConfiguration());
             modelBuilder.ApplyConfiguration(new GoldConfiguration());
@@ -42,6 +41,7 @@ namespace yash.Data.EF
         public DbSet<Diamond> Diamonds { get; set; }
         public DbSet<Gold> Golds { get; set; }
         public DbSet<Item> Items { get; set; }
+        public DbSet<ItemImage> ItemImages { get; set; }
         public DbSet<ProductType> ProductTypes { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
