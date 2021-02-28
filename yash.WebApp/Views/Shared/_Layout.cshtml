@@ -1,4 +1,4 @@
-﻿@using Microsoft.AspNetCore.Http;
+﻿
 <!DOCTYPE html>
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
@@ -6,7 +6,7 @@
 <!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
 <html class="no-js">
-<!--<![endif]-->
+ <!--<![endif]-->
 <!-- Mirrored from demo.enpek.com/html-templates/gem/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 21 Feb 2021 17:58:44 GMT -->
 <head>
     <meta charset="utf-8">
@@ -89,7 +89,7 @@
                                     @Html.ActionLink("Home", "Index")
                                 </li>
                                 <li class="">
-                                    @Html.ActionLink("RINGS", "Index", new { categoryId = 1 })
+                                    @Html.ActionLink("RINGS", "Index", new { categoryId = 1})
                                 </li>
                                 <li class="">
                                     @Html.ActionLink("EARRINGS", "Index", new { categoryId = 2 })
@@ -97,39 +97,17 @@
                                 <li class="">
                                     @Html.ActionLink("PENDANTS", "Index", new { categoryId = 3 })
                                 </li>
-
+                                
                             </ul>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <ul class="list-unstyled margin-top-30 nav-fix margin-bottom-0">
-                                @if (Context.Session.GetString("name") != null)
-                                {
-                                    <li>
-                                        <form asp-action="ChangePass" asp-controller="UsersApp" method="get">
-                                            <input hidden type="number" value="@Context.Session.GetInt32("id")" name="id" />
-                                            <input type="submit" value="@Context.Session.GetString("name")" class="btn btn-group-justified" />
-                                        </form>
-                                        @*@Html.ActionLink(@"Context.Session.GetString('name')","ChangePass","UsersApp",new { id= @Context.Session.GetInt32("id") })*@
-                                    </li>
-                                    <li>
-                                        <form asp-action="LogOut" asp-controller="UsersApp" method="post">
-                                            <input type="submit" value="Logout" />
-                                        </form>
-                                    </li>
-                                }
-                                else
-                                {
-                                    <li>
-                                        <a asp-controller="UsersApp" asp-action="Login">Login</a>
-                                    </li>
-                                    <li>
-                                        <a asp-controller="UsersApp" asp-action="Register">Register</a>
-                                    </li>
-                                }
-                                <!--=================== Search Form ===================-->
                                 <li>
-                                    <a href="search.html">Search</a>
+                                    <a href="UsersApp/Login">Login</a>
                                 </li>
+                                <li><a href="UsersApp/Register">Register</a></li>
+                                <!--=================== Search Form ===================-->
+                                <li><a href="search.html">Search</a></li>
                             </ul>
                             <!--=================== Social Icons Footer ===================-->
                             <ul class="list-inline margin-top-30 margin-bottom-0">

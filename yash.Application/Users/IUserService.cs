@@ -12,7 +12,5 @@ namespace yash.Application.Users
         Task<bool> Register(RegisterRequest request);
         Task<bool> Authenticate(LoginRequest request);
         Task<IEnumerable<User>> GetUser();
-        Task<UserViewModel> CheckUser(int id);
-        Task<bool> changPass(User user);
     }
 }
