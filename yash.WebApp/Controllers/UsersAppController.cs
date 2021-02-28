@@ -24,14 +24,22 @@ namespace yash.WebApp.Controllers
         public async Task<IActionResult> Register(RegisterRequest model)
         {
             HttpClient httpClient = new HttpClient();
-            var newuser = httpClient.PostAsJsonAsync(uri, model).Result;
-            if (newuser.IsSuccessStatusCode)
+            if (!ModelState.IsValid)
             {
-                return RedirectToAction("Index", "Home");
+                return View();
             }
             else
             {
-                return View();
+
+                var newuser = httpClient.PostAsJsonAsync(uri, model).Result;
+                if (newuser.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    return View();
+                }
             }
         }
         [HttpGet]
@@ -40,33 +48,70 @@ namespace yash.WebApp.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Login(User model)
+        public async Task<IActionResult> Login(LoginRequest model)
         {
             HttpClient httpClient = new HttpClient();
-            var data = JsonConvert.DeserializeObject<IEnumerable<User>>(httpClient.GetStringAsync(uri).Result);
-            string email = model.Email;
-            var user = data.FirstOrDefault(u => u.Email.Equals(email));
-            if (user == null)
+            if (!ModelState.IsValid)
             {
-                ViewBag.mess = "Invalid Email";
                 return View();
             }
             else
             {
-                if (user.Password.Equals(model.Password))
+                var data = JsonConvert.DeserializeObject<IEnumerable<User>>(httpClient.GetStringAsync(uri).Result);
+                string email = model.Email;
+                var user = data.FirstOrDefault(u => u.Email.Equals(email));
+                if (user == null)
                 {
-                    HttpContext.Session.SetString("name", user.FirstName + " " + user.LastName);
-                    HttpContext.Session.SetInt32("id", user.Id);
-                    TempData["id"] = HttpContext.Session.GetInt32("id");
-                    TempData["session"] = HttpContext.Session.GetString("name");
-                    return RedirectToAction("Index", "Home");
+                    ViewBag.mess = "Invalid Email";
+                    return View();
                 }
                 else
                 {
-                    ViewBag.mess = "Invalid password";
+                    if (user.Password.Equals(model.Password))
+                    {
+                        HttpContext.Session.SetString("name", user.FirstName + " " + user.LastName);
+                        HttpContext.Session.SetInt32("id", user.Id);
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        ViewBag.mess = "Invalid password";
+                    }
+                    return View();
                 }
+
+            }
+
+        }
+        [HttpPost]
+        public async Task<IActionResult> LogOut()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
+        }
+        [HttpGet]
+        public async Task<IActionResult> ChangePass(int id)
+        {
+            HttpClient httpClient = new HttpClient();
+            if (id > 0)
+            {
+                var user = JsonConvert.DeserializeObject<User>(httpClient.GetStringAsync(uri + id).Result);
+                return View(user);
             }
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> ChangePass(User pUser)
+        {
+            HttpClient httpClient = new HttpClient();
+            var update = httpClient.PutAsJsonAsync(uri, pUser).Result;
+            if (update.IsSuccessStatusCode)
+            {
+                HttpContext.Session.Clear();
+                return RedirectToAction("Login");
+            }
+            ViewBag.mess = "Password change failed";
+            return View(pUser.Id);
         }
     }
 }

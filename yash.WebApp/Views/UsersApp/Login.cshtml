@@ -1,4 +1,4 @@
-﻿@model yash.Data.Entities.User
+﻿@model yash.ViewModels.Users.LoginRequest
 
 @{
     ViewData["Title"] = "Login";
@@ -12,10 +12,10 @@
                     <h3 style="color:red" class="page-header text-center">@ViewBag.mess</h3>
                     <div class="col-md-12 padding-fix-2 paira-gap-3">
                         <form asp-action="Login" asp-controller="UsersApp" method="post">
-                            <input type="text" asp-for="Email" class="form-control margin-bottom-30" placeholder="Email"/>
                             <span asp-validation-for="Email" class="text-danger"></span>
-                            <input type="password" asp-for="Password" class="form-control margin-bottom-30" placeholder="Password"/>
+                            <input type="text" asp-for="Email" class="form-control margin-bottom-30" placeholder="Email" />
                             <span asp-validation-for="Password" class="text-danger"></span>
+                            <input type="password" asp-for="Password" class="form-control margin-bottom-30" placeholder="Password" />
                             <button type="submit" class="btn btn-default btn-lg margin-right-10 margin-bottom-30 pull-left">LogIn</button>
                         </form>
                         <a href="UsersApp/Register" class="margin-top-15 pull-left color-1"><span class="under">Register</span> a new account</a>

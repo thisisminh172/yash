@@ -2,6 +2,7 @@
 using System;
 using System.Threading.Tasks;
 using yash.Application.Users;
+using yash.Data.Entities;
 using yash.ViewModels.Users;
 
 namespace yash.WebApi.Controllers
@@ -16,7 +17,7 @@ namespace yash.WebApi.Controllers
             this.userService = services;
         }
         [HttpGet]
-        public async Task<IActionResult> Employees()
+        public async Task<IActionResult> Users()
         {
             try
             {
@@ -57,6 +58,29 @@ namespace yash.WebApi.Controllers
             else
             {
                 return BadRequest();
+            }
+        }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetUser(int id)
+        {
+            var user = await userService.CheckUser(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user);
+        }
+        [HttpPut]
+        public async Task<IActionResult> ChangePass(User user)
+        {
+            var result = await userService.changPass(user);
+            if(result!= true)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok();
             }
         }
     }

@@ -4,8 +4,10 @@ using System.Text;
 
 namespace yash.ViewModels.Users
 {
-    public class RegisterRequest
+    public class UserViewModel
     {
+        public int Id { get; set; }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -25,6 +27,5 @@ namespace yash.ViewModels.Users
         public DateTime CurrentDate { get; set; }
 
         public string Password { get; set; }
-        public string ConfirmPassword { get; set; }
     }
 }
