@@ -7,7 +7,7 @@ namespace yash.Utilities.Constants
     public class SystemConstants
     {
         //your server name here
-        private const string SQL_SERVER_NAME = "DESKTOP-9HEQTO5\\SQLEXPRESS";
+        private const string SQL_SERVER_NAME = "QUOC-TUAN";
 
 
 
