@@ -19,13 +19,13 @@ namespace yash.WebApi.Controllers
             _cartService = cartService;
         }
 
-        [HttpGet("{userId}")]
-        public async Task<IActionResult> GetCategories(int userId)
+        [HttpGet("GetCarts/{userId}")]
+        public IActionResult GetCarts(int userId)
         {
-            var carts = await _cartService.GetAll(userId);
+            var carts = _cartService.GetAll(userId);
             return Ok(carts);
         }
-        [HttpGet("{cartId}")]
+        [HttpGet("GetCart/{cartId}")]
         public async Task<IActionResult> GetCart(int cartId)
         {
             var cart = await _cartService.GetById(cartId);
@@ -33,21 +33,21 @@ namespace yash.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCart(int itemId)
+        public async Task<IActionResult> AddNewCart(int itemId, int userId)
         {
-            var result = await _cartService.AddNewCart(itemId);
+            var result = await _cartService.AddNewCart(itemId, userId);
 
             return Ok(result);
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateCategory(Cart cart)
+        public async Task<IActionResult> UpdateCart(int cartId, int quantity)
         {
-            var result = await _cartService.UpdateCart(cart);
+            var result = await _cartService.UpdateCart(cartId, quantity);
             return Ok(result);
         }
         [HttpDelete("{cartId}")]
-        public async Task<IActionResult> DeleteCategory(int cartId)
+        public async Task<IActionResult> DeleteCart(int cartId)
         {
             var result = await _cartService.DeleteCart(cartId);
             if (result == 0)

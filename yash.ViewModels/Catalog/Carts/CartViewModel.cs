@@ -17,6 +17,7 @@ namespace yash.ViewModels.Catalog.Carts
         public int Quantity { get; set; }
         public float Price { get; set; }
         public int UserId { get; set; }//FK
+        public string ThumbnailImage { get; set; }
         public DateTime DateCreated { get; set; }
     }
 }
