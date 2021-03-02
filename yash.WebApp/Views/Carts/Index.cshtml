@@ -1,0 +1,100 @@
+﻿@model CartItemViewModel 
+@{
+    ViewData["Title"] = "Your Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--=================== Cart Template ===================-->
+<main class="cart-page">
+    <section class="cart-content input-cart-box">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="border-bottom overflow-h text-capitalize">
+                    <div class="col-md-12 col-xs-12 col-sm-4 text-center">
+                        <h1 class="page-header">Shopping Cart</h1>
+                    </div>
+                    <div class="col-md-4 col-xs-6 col-sm-4 text-center padding-fix-3">
+                        <p class="margin-clear"><span class="paira-cart-item-count"><b>2 item in the bag</b></span></p>
+                    </div>
+                    <div class="col-md-4 col-md-offset-4 col-xs-6 col-sm-4 text-center padding-fix-3">
+                        <p class="margin-clear"><a href="collection.html" class="border-a"><b>Continue shopping</b></a></p>
+                    </div>
+                </div>
+                <form action="" method="post">
+                    <div class="col-md-12 col-sm-12 col-xs-12 padding-clear">
+                        <div class="cart-item-list">
+                            <ul class="list-unstyled paira-cart-page-list overflow-h margin-clear">
+                                @{
+                                    float totalPrice = 0f;
+                                }
+                                @if (Model.Carts != null)
+                                {
+                                    for (var i = 0; i < Model.Carts.Count; i++)
+                                    {
+                                        totalPrice += Model.Carts[i].Price;
+
+                                        <li class="border-bottom overflow-h padding-fix-2">
+                                            <div class="col-md-9 col-sm-8 col-xs-12 padding-clear">
+                                                <a href="@Url.Action("Details","Items",new { itemId = Model.Carts[i].ItemId})" class="pull-left margin-right-10 cart-left">
+                                                    <img class="img-responsive center-block" style=" height: 160px;width: 160px;" src="/@Model.Carts[i].ThumbnailImage" alt="Free demo product name 1 - cotton">
+                                                </a>
+                                                <div class="cart-title-price">
+                                                    <h4 class="text-capitalize margin-top-15"><a href="product.html" class="margin-top-10">@Model.Carts[i].ItemName</a></h4>
+                                                    <h6>@Model.Carts[i].GoldName.ToUpper() / @Model.Carts[i].DiamondName.ToUpper() / @Model.Carts[i].ProductTypeName.ToUpper()</h6>
+                                                    <h3 class="margin-top-20 font-weight-700 margin-bottom-10"><span class="money">@string.Format("{0:C}", Model.Carts[i].Price)</span></h3>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 col-sm-2 col-xs-6 text-right">
+                                                @Model.Carts[i].Id
+                                                @Html.HiddenFor(m => Model.Carts[i].Id)
+                                                @*@Html.TextBoxFor(m => Model.Carts[i].Id, new { @type = "hidden" })*@
+                                                @Html.TextBoxFor(m => Model.Carts[i].Quantity, new { @type = "number", @class = "form-control display-inline-b margin-top-20" })
+                                            </div>
+                                            <div class="col-md-1 col-sm-2 col-xs-6 text-right">
+                                                <a href="#" class="center-block  margin-top-25"><img src="images/close.png" alt="" /></a>
+                                            </div>
+                                        </li>
+                                    }
+                                }
+                                
+
+                                @*<li class="border-bottom overflow-h padding-fix-2">
+            <div class="col-md-9 col-sm-8 col-xs-12 padding-clear">
+                <a href="product.html" class="pull-left margin-right-10 cart-left">
+                    <img class="img-responsive center-block" src="images/product/product-12.jpg" alt="Free demo product name 1 - cotton">
+                </a>
+                <div class="cart-title-price">
+                    <h4 class="text-capitalize margin-top-15"><a href="product.html" class="margin-top-10">Diamond Necklaces For Women</a></h4>
+                    <h6>Small / Diamond / Nekles</h6>
+                    <h3 class="margin-top-20 font-weight-700 margin-bottom-10"><span class="money">$170.00</span></h3>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-6 text-right">
+                <input type="number" size="4" name="updates[]" min="0" value="1" class="form-control display-inline-b margin-top-20">
+            </div>
+            <div class="col-md-1 col-sm-2 col-xs-6 text-right">
+                <a href="#" class="center-block  margin-top-25"><img src="images/close.png" alt="" /></a>
+            </div>
+        </li>*@
+                            </ul>
+                        </div>
+                    </div>
+                    <aside class="">
+                        <div class="col-md-6 col-sm-6 col-xs-12 padding-fix-2 margin-top-40">
+                            <textarea id="note" name="note" rows="6" class="margin-top-10 margin-bottom-10 form-control" placeholder="Special instructions..."></textarea>
+                        </div>
+                        <figure class="col-md-6 col-sm-6 col-xs-12 padding-fix-2 text-right margin-top-40 padding-left-0">
+                            <div class="cart-sub-total paira-cart-sub-total">
+                                <h2 class="margin-clear margin-bottom-5 font-weight-700"><samp class="font-weight-300">Total: </samp><span class="money">@string.Format("{0:C}",totalPrice)</span></h2>
+                                <p class="margin-bottom-30">Shipping & Texts Calculated at checkout</p>
+                                <input type="submit" id="update" name="submitButton" class="btn btn-primary btn-lg margin-right-10 margin-bottom-60" value="Update"/>
+                                <input type="submit" id="checkout" name="submitButton" class="btn btn-default btn-lg text-uppercase margin-bottom-60" value="Checkout"/>
+                            </div>
+                        </figure>
+                    </aside>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+

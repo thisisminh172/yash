@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using yash.Application.Catalog.Carts;
 using yash.Data.Entities;
+using yash.ViewModels.Catalog.Carts;
 
 namespace yash.WebApi.Controllers
 {
@@ -33,17 +34,17 @@ namespace yash.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddNewCart(int itemId, int userId)
+        public async Task<IActionResult> AddNewCart(CartViewModel newCart)
         {
-            var result = await _cartService.AddNewCart(itemId, userId);
+            int result = await _cartService.AddNewCart(newCart);
 
             return Ok(result);
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateCart(int cartId, int quantity)
+        public async Task<IActionResult> UpdateCart(CartViewModel updateCart)
         {
-            var result = await _cartService.UpdateCart(cartId, quantity);
+            var result = await _cartService.UpdateCart(updateCart);
             return Ok(result);
         }
         [HttpDelete("{cartId}")]
