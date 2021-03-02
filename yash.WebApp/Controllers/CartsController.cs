@@ -46,7 +46,12 @@ namespace yash.WebApp.Controllers
                 return RedirectToAction("Login", "UsersApp");
             }
             var result = JsonConvert.DeserializeObject<List<CartViewModel>>(httpclient.GetStringAsync(uri + "GetCarts/" + userIdTemp).Result);
-
+            var number_of_items = 0;
+            for(var i = 0; i < result.Count; i++)
+            {
+                number_of_items += result[i].Quantity;
+            }
+            HttpContext.Session.SetInt32("number_of_items", number_of_items);
             return View(new CartItemViewModel()
             {
                 Carts = result
@@ -64,6 +69,13 @@ namespace yash.WebApp.Controllers
             }
             HttpClient httpclient = new HttpClient();
             var result = httpclient.PostAsJsonAsync(uri, new CartViewModel { ItemId = itemId, UserId = userIdTemp }).Result;
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Delete(int cartId)
+        {
+            HttpClient httpclient = new HttpClient();
+            var result = httpclient.DeleteAsync(uri + cartId).Result;
             return RedirectToAction("Index");
         }
         

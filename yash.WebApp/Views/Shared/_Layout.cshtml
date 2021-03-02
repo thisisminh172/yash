@@ -68,7 +68,7 @@
                     </div>
                     <div class="cart">
                         <div class="dropdown cart-menu-body paira-cart-menu-body">
-                            <a href="@Url.Action("Index","Carts")" class="padding-bottom-10"><img src="/images/cart.png" alt="" class="img-responsive center-block" /> <span class="paira-cart-item-count">2</span></a>
+                            <a href="@Url.Action("Index","Carts")" class="padding-bottom-10"><img src="/images/cart.png" alt="" class="img-responsive center-block" /> <span class="paira-cart-item-count">@Context.Session.GetInt32("number_of_items")</span></a>
                         </div>
                     </div>
                 </div>
@@ -86,16 +86,20 @@
                             <h3>Menu</h3>
                             <ul class="list-unstyled nav-fix margin-top-30 margin-bottom-0">
                                 <li class="active">
-                                    @Html.ActionLink("Home", "Index")
+                                    <a href="@Url.Action("Index","Items")">Home</a>
+                                    @*@Html.ActionLink("Home", "Index")*@
                                 </li>
                                 <li class="">
-                                    @Html.ActionLink("RINGS", "Index", new { categoryId = 1 })
+                                    <a href="@Url.Action("Index","Items", new { categoryId = 1})">RINGS</a>
+                                    @*@Html.ActionLink("RINGS", "Index", new { categoryId = 1 })*@
                                 </li>
                                 <li class="">
-                                    @Html.ActionLink("EARRINGS", "Index", new { categoryId = 2 })
+                                    <a href="@Url.Action("Index","Items", new { categoryId = 2})">EARRINGS</a>
+                                    @*@Html.ActionLink("EARRINGS", "Index", new { categoryId = 2 })*@
                                 </li>
                                 <li class="">
-                                    @Html.ActionLink("PENDANTS", "Index", new { categoryId = 3 })
+                                    <a href="@Url.Action("Index","Items", new { categoryId = 3})">PENDANTS</a>
+                                    @*@Html.ActionLink("PENDANTS", "Index", new { categoryId = 3 })*@
                                 </li>
 
                             </ul>

@@ -1,4 +1,5 @@
-﻿@model CartItemViewModel 
+﻿@using Microsoft.AspNetCore.Http;
+@model CartItemViewModel
 @{
     ViewData["Title"] = "Your Cart";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -14,10 +15,10 @@
                         <h1 class="page-header">Shopping Cart</h1>
                     </div>
                     <div class="col-md-4 col-xs-6 col-sm-4 text-center padding-fix-3">
-                        <p class="margin-clear"><span class="paira-cart-item-count"><b>2 item in the bag</b></span></p>
+                        <p class="margin-clear"><span class="paira-cart-item-count"><b>@Context.Session.GetInt32("number_of_items") item in the bag</b></span></p>
                     </div>
                     <div class="col-md-4 col-md-offset-4 col-xs-6 col-sm-4 text-center padding-fix-3">
-                        <p class="margin-clear"><a href="collection.html" class="border-a"><b>Continue shopping</b></a></p>
+                        <p class="margin-clear"><a href="@Url.Action("Index","Items")" class="border-a"><b>Continue shopping</b></a></p>
                     </div>
                 </div>
                 <form action="" method="post">
@@ -45,50 +46,33 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-2 col-sm-2 col-xs-6 text-right">
-                                                @Model.Carts[i].Id
+                                                @*@Model.Carts[i].Id*@
                                                 @Html.HiddenFor(m => Model.Carts[i].Id)
                                                 @*@Html.TextBoxFor(m => Model.Carts[i].Id, new { @type = "hidden" })*@
                                                 @Html.TextBoxFor(m => Model.Carts[i].Quantity, new { @type = "number", @class = "form-control display-inline-b margin-top-20" })
                                             </div>
                                             <div class="col-md-1 col-sm-2 col-xs-6 text-right">
-                                                <a href="#" class="center-block  margin-top-25"><img src="images/close.png" alt="" /></a>
+                                                <a href="@Url.Action("Delete","Carts",new { cartId = Model.Carts[i].Id})" class="center-block  margin-top-25"><img src="images/close.png" alt="" /></a>
                                             </div>
                                         </li>
+
+
                                     }
                                 }
-                                
 
-                                @*<li class="border-bottom overflow-h padding-fix-2">
-            <div class="col-md-9 col-sm-8 col-xs-12 padding-clear">
-                <a href="product.html" class="pull-left margin-right-10 cart-left">
-                    <img class="img-responsive center-block" src="images/product/product-12.jpg" alt="Free demo product name 1 - cotton">
-                </a>
-                <div class="cart-title-price">
-                    <h4 class="text-capitalize margin-top-15"><a href="product.html" class="margin-top-10">Diamond Necklaces For Women</a></h4>
-                    <h6>Small / Diamond / Nekles</h6>
-                    <h3 class="margin-top-20 font-weight-700 margin-bottom-10"><span class="money">$170.00</span></h3>
-                </div>
-            </div>
-            <div class="col-md-2 col-sm-2 col-xs-6 text-right">
-                <input type="number" size="4" name="updates[]" min="0" value="1" class="form-control display-inline-b margin-top-20">
-            </div>
-            <div class="col-md-1 col-sm-2 col-xs-6 text-right">
-                <a href="#" class="center-block  margin-top-25"><img src="images/close.png" alt="" /></a>
-            </div>
-        </li>*@
                             </ul>
                         </div>
                     </div>
                     <aside class="">
                         <div class="col-md-6 col-sm-6 col-xs-12 padding-fix-2 margin-top-40">
-                            <textarea id="note" name="note" rows="6" class="margin-top-10 margin-bottom-10 form-control" placeholder="Special instructions..."></textarea>
+                            @*<textarea id="note" name="note" rows="6" class="margin-top-10 margin-bottom-10 form-control" placeholder="Special instructions..."></textarea>*@
                         </div>
                         <figure class="col-md-6 col-sm-6 col-xs-12 padding-fix-2 text-right margin-top-40 padding-left-0">
                             <div class="cart-sub-total paira-cart-sub-total">
-                                <h2 class="margin-clear margin-bottom-5 font-weight-700"><samp class="font-weight-300">Total: </samp><span class="money">@string.Format("{0:C}",totalPrice)</span></h2>
+                                <h2 class="margin-clear margin-bottom-5 font-weight-700"><samp class="font-weight-300">Total: </samp><span class="money">@string.Format("{0:C}", totalPrice)</span></h2>
                                 <p class="margin-bottom-30">Shipping & Texts Calculated at checkout</p>
-                                <input type="submit" id="update" name="submitButton" class="btn btn-primary btn-lg margin-right-10 margin-bottom-60" value="Update"/>
-                                <input type="submit" id="checkout" name="submitButton" class="btn btn-default btn-lg text-uppercase margin-bottom-60" value="Checkout"/>
+                                <input type="submit" id="update" name="submitButton" class="btn btn-primary btn-lg margin-right-10 margin-bottom-60" value="Update" />
+                                <input type="submit" id="checkout" name="submitButton" class="btn btn-default btn-lg text-uppercase margin-bottom-60" value="Checkout" />
                             </div>
                         </figure>
                     </aside>
