@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using yash.Data.EF;
 using yash.Data.Entities;
+using yash.ViewModels.Catalog.Carts;
 
 namespace yash.Application.Catalog.Carts
 {
@@ -16,18 +17,38 @@ namespace yash.Application.Catalog.Carts
         {
             _context = context;
         }
-        public async Task<int> AddNewCart(int itemId)
+        public async Task<int> AddNewCart(int itemId, int userId)
         {
             //tim section userId CHUA CO
-            var item = await _context.Items.FindAsync(itemId);
-            var newCart = new Cart()
+            var temp = _context.Carts.Where(x => x.UserId == userId).ToList();
+            var quantity = 1;
+            if(temp.Count == 0)
             {
-                
-                ItemId = itemId,
-                Quantity = 1,
-                Price = item.TotalMaking
-            };
-            _context.Carts.Add(newCart);
+                var item = await _context.Items.FindAsync(itemId);
+                var newCart = new Cart()
+                {
+                    ItemId = itemId,
+                    Quantity = quantity,
+                    Price = item.TotalMaking,
+                    UserId = userId,
+                    DateCreated = DateTime.Now,
+                    
+                };
+                _context.Carts.Add(newCart);
+            }
+            else
+            {
+                foreach( var i in temp)
+                {
+                    if(i.ItemId == itemId)
+                    {
+                        var itemPrice = _context.Items.Find(itemId).TotalMaking;
+                        i.Quantity += quantity;
+                        i.Price = itemPrice * i.Quantity;
+                    }
+                }
+            }
+            
             return await _context.SaveChangesAsync();
         }
 
@@ -38,23 +59,74 @@ namespace yash.Application.Catalog.Carts
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<List<Cart>> GetAll(int userId)
+        public List<CartViewModel> GetAll(int userId)
         {
-            var cartList = await _context.Carts.Where(x => x.UserId == userId).ToListAsync();
-            return cartList;
+            //var cartList = await _context.Carts.Where(x => x.UserId == userId).ToListAsync();
+            var data = _context.Carts.Where(x => x.UserId == userId).ToList();
+            //var data = (from c in _context.Carts
+            //            where c.UserId == userId
+            //            select new CartViewModel(){
+            //                ItemId = c.ItemId,
+            //                ItemName = _context.Items.Find(c.ItemId).Name,
+            //                GoldName = _context.Golds.Find(_context.Items.Find(c.ItemId).GoldId).GoldCarat,
+            //                DiamondName = _context.Diamonds.Find(_context.Items.Find(c.ItemId).DiamondId).DiamondShape,
+            //                ProductTypeName = _context.ProductTypes.Find(_context.Items.Find(c.ItemId).ProductId).Name,
+            //                Quantity = c.Quantity,
+            //                DateCreated = c.DateCreated,
+            //                Price = c.Price,
+            //                ThumbnailImage = _context.ItemImages.FirstOrDefault(i => i.ItemId == c.ItemId && i.IsDefault == true).ItemImageUrl,
+            //                UserId = c.UserId
+            //            }).ToListAsync();
+
+            var listCart = new List<CartViewModel>();
+            foreach(var c in data)
+            {
+                var tempCart = new CartViewModel();
+                tempCart.UserId = userId;
+                tempCart.ItemId = c.ItemId;
+                tempCart.ItemName = _context.Items.Find(c.ItemId).Name;
+                tempCart.GoldName = _context.Golds.Find(_context.Items.Find(c.ItemId).GoldId).GoldCarat;
+                tempCart.DiamondName = _context.Diamonds.Find(_context.Items.Find(c.ItemId).DiamondId).DiamondShape;
+                tempCart.DateCreated = c.DateCreated;
+                tempCart.Price = c.Price;
+                tempCart.ThumbnailImage = _context.ItemImages.FirstOrDefault(i => i.ItemId == c.ItemId && i.IsDefault == true).ItemImageUrl;
+                tempCart.Quantity = c.Quantity;
+
+
+                listCart.Add(tempCart);
+            }
+            
+            return listCart;
         }
 
-        public async Task<Cart> GetById(int cartId)
+        public async Task<CartViewModel> GetById(int cartId)
         {
-            var cart = await _context.Carts.FindAsync(cartId);
-            return cart;
+            
+
+            var cartTemp = await _context.Carts.FindAsync(cartId);
+            var cartView = new CartViewModel()
+            {
+                ItemId = cartTemp.ItemId,
+                ItemName = _context.Items.Find(cartTemp.ItemId).Name,
+                GoldName = _context.Golds.Find(_context.Items.Find(cartTemp.ItemId).GoldId).GoldCarat,
+                DiamondName = _context.Diamonds.Find(_context.Items.Find(cartTemp.ItemId).DiamondId).DiamondShape,
+                ProductTypeName = _context.ProductTypes.Find(_context.Items.Find(cartTemp.ItemId).ProductId).Name,
+                Quantity = cartTemp.Quantity,
+                DateCreated = cartTemp.DateCreated,
+                Price = cartTemp.Price,
+                ThumbnailImage = _context.ItemImages.FirstOrDefault(i => i.ItemId == cartTemp.ItemId && i.IsDefault == true).ItemImageUrl,
+                UserId = cartTemp.UserId
+            };
+            
+            return cartView;
+            
         }
 
-        public async Task<int> UpdateCart(Cart cart)
+        public async Task<int> UpdateCart(int cartId, int quantity)
         {
-            var updateCart = await _context.Carts.FindAsync(cart.Id);
-            updateCart.Quantity = cart.Quantity;
-            updateCart.Price = cart.Quantity * cart.Price;
+            var updateCart = await _context.Carts.FindAsync(cartId);
+            updateCart.Quantity = quantity;
+            updateCart.Price = updateCart.Quantity * _context.Items.Find(updateCart.ItemId).TotalMaking;
             return await _context.SaveChangesAsync();
             
         }
