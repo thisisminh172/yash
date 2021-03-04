@@ -11,8 +11,8 @@ namespace yash.Application.Catalog.Carts
     {
         List<CartViewModel> GetAll(int userId);
         Task<CartViewModel> GetById(int cartId);
-        Task<int> AddNewCart(int itemId, int userId);
-        Task<int> UpdateCart(int itemId, int quantity);
+        Task<int> AddNewCart(CartViewModel newCart);
+        Task<int> UpdateCart(CartViewModel updateCart);
         Task<int> DeleteCart(int cartId);
     }
 }
