@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
 using yash.Utilities.Constants;
 using yash.ViewModels.Catalog.Items;
 using yash.WebApp.Models;
@@ -19,7 +16,7 @@ namespace yash.WebApp.Controllers
             HttpClient httpclient = new HttpClient();
             if (categoryId != 0)
             {
-                var items = JsonConvert.DeserializeObject<List<ItemViewModel>>(httpclient.GetStringAsync(uri+"GetItemsByCategory/"+categoryId).Result);
+                var items = JsonConvert.DeserializeObject<List<ItemViewModel>>(httpclient.GetStringAsync(uri + "GetItemsByCategory/" + categoryId).Result);
                 return View(new ItemDetailViewModel()
                 {
                     Items = items,
@@ -33,8 +30,25 @@ namespace yash.WebApp.Controllers
                     Items = items,
                 });
             }
-            
-            
+        }
+        [HttpGet]
+        public IActionResult Search(string name)
+        {
+            HttpClient httpClient = new HttpClient();
+            var items = JsonConvert.DeserializeObject<List<ItemViewModel>>(httpClient.GetStringAsync(uri + "SearchItem/" + name).Result);
+            if (items.Count >0)
+            {
+                return View(new ItemDetailViewModel()
+                {
+                    Items = items,
+                });
+            }
+            else
+            {
+                TempData["searchmess"] = "Item does not exist!!!";
+                return RedirectToAction("Index", "Items"); ;
+            }
+
         }
 
         [HttpGet]

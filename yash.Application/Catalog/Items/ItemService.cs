@@ -169,5 +169,57 @@ namespace yash.Application.Catalog.Items
 
             return data;
         }
+
+        public async Task<List<ItemViewModel>> Search(string name)
+        {
+            if (_context != null && name != null)
+            {
+                var query = from i in _context.Items
+                            where i.Name.Contains(name)
+                            join img in _context.ItemImages on i.Id equals img.ItemId
+                            where img.IsDefault == true
+                            join pt in _context.ProductTypes on i.ProductId equals pt.Id into ipt
+                            from pt in ipt.DefaultIfEmpty()
+                            join g in _context.Golds on i.GoldId equals g.Id into ig
+                            from g in ig.DefaultIfEmpty()
+                            join d in _context.Diamonds on i.DiamondId equals d.Id into id
+                            from d in id.DefaultIfEmpty()
+                            join c in _context.Categories on i.CategoryId equals c.Id into ic
+                            from c in ic.DefaultIfEmpty()
+                            join rs in _context.RingSizes on i.RingSizeId equals rs.Id into irs
+                            from rs in irs.DefaultIfEmpty()
+                            join cer in _context.Certifications on i.CertifyId equals cer.Id into icer
+                            from cer in icer.DefaultIfEmpty()
+                            select new { i, pt, g, d, c, rs, cer, img };
+                var data = await query
+                    .Select(x => new ItemViewModel()
+                    {
+                        Id = x.i.Id,
+                        Name = x.i.Name,
+                        CategoryName = x.c.Name,
+                        CertifyName = x.cer.Name,
+                        DiamondCarat = x.i.DiamondCarat,
+                        DiamondShapeName = x.d.DiamondShape,
+                        GoldCaratName = x.g.GoldCarat,
+                        GoldWeight = x.i.GoldWeight,
+                        ProductName = x.pt.Name,
+                        RingSizeNumber = x.rs.SizeNumber,
+                        ThumbnailImage = x.img.ItemImageUrl,
+                        TotalMaking = x.i.TotalMaking,
+                        WastageInPercentage = x.i.WastageInPercentage,
+                        itemImageViewModels = (from img in _context.ItemImages
+                                               where img.ItemId == x.i.Id
+                                               select new ItemImageViewModel()
+                                               {
+                                                   ItemImageUrl = img.ItemImageUrl
+                                               }).ToList()
+                    }).ToListAsync();
+                return data;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

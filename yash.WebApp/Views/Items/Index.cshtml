@@ -46,13 +46,14 @@
                             </div>
                         </div>
                         <div class="row paira-grid-view">
+                            <h3 style="color:red" class="text-center">@TempData["searchmess"]</h3>
                             @foreach (var item in Model.Items)
                             {
                                 <div class="col-md-6 col-sm-6 col-xs-12 padding-clear border-bottom border-none">
                                     <!--=================== Product ===================-->
                                     <div class="paira-product product border-left">
                                         <a href="@Url.Action("Details", "Items", new { itemId = item.Id })">
-                                            
+
                                             <img src="/@item.ThumbnailImage" alt="" class="img-responsive center-block paira-product-image full-width" />
 
                                         </a>
@@ -66,129 +67,129 @@
                                 </div>
                             }
                             <!--<div class="col-md-6 col-sm-6 col-xs-12 padding-clear border-bottom border-none">-->
-                                <!--=================== Product ===================-->
-                                <!--<div class="paira-product product border-left">
-                                    <a href="product.html">
-                                        <img src="images/product/product-1.jpg" alt="" class="img-responsive center-block paira-product-image full-width inactive-product" />-->
-                                        <!-- <img src="images/product/product-2.jpg" alt="" class="img-responsive center-block paira-product-image full-width product-active" /> -->
-                                    <!--</a>
-                                    <div class="product-sale"><span>Sale</span></div>
-                                    <div class="margin-left-10 margin-right-10 product-title-price text-left">
-                                        <h2 class="margin-top-10 text-capitalize font-weight-400"><a href="product.html" class="paira-product-title">Free demo product name 1</a></h2>
-                                        <h1 class="display-inline-b margin-right-10 font-weight-700"><del><span class="money">$300.00</span></del></h1>
-                                        <h1 class="display-inline-b font-weight-700"><span class="money">$150.00</span></h1>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12 padding-clear border-bottom ">-->
-                                <!--=================== Product ===================-->
-                                <!--<div class="paira-product product border-left">
-                                    <a href="product.html">
-                                        <img src="images/product/product-2.jpg" alt="" class="img-responsive center-block paira-product-image full-width inactive-product" />
+                            <!--=================== Product ===================-->
+                            <!--<div class="paira-product product border-left">
+    <a href="product.html">
+        <img src="images/product/product-1.jpg" alt="" class="img-responsive center-block paira-product-image full-width inactive-product" />-->
+                            <!-- <img src="images/product/product-2.jpg" alt="" class="img-responsive center-block paira-product-image full-width product-active" /> -->
+                            <!--</a>
+            <div class="product-sale"><span>Sale</span></div>
+            <div class="margin-left-10 margin-right-10 product-title-price text-left">
+                <h2 class="margin-top-10 text-capitalize font-weight-400"><a href="product.html" class="paira-product-title">Free demo product name 1</a></h2>
+                <h1 class="display-inline-b margin-right-10 font-weight-700"><del><span class="money">$300.00</span></del></h1>
+                <h1 class="display-inline-b font-weight-700"><span class="money">$150.00</span></h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12 padding-clear border-bottom ">-->
+                            <!--=================== Product ===================-->
+                            <!--<div class="paira-product product border-left">
+            <a href="product.html">
+                <img src="images/product/product-2.jpg" alt="" class="img-responsive center-block paira-product-image full-width inactive-product" />
 
-                                        <img src="images/product/product-3.jpg" alt="" class="img-responsive center-block paira-product-image full-width product-active" />
-                                    </a>
-                                    <div class="margin-left-10 margin-right-10 product-title-price text-left">
-                                        <h2 class="margin-top-10 text-capitalize font-weight-400"><a href="product.html" class="paira-product-title">Free demo product name 10</a></h2>
-                                        <h1 class="display-inline-b font-weight-700"><span class="money">$70.00</span></h1>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12 padding-clear border-bottom border-none">-->
-                                <!--=================== Product ===================-->
-                                <!--<div class="paira-product product border-left">
-                                    <a href="product.html">
-                                        <img src="images/product/product-3.jpg" alt="" class="img-responsive center-block paira-product-image full-width inactive-product" />
+                <img src="images/product/product-3.jpg" alt="" class="img-responsive center-block paira-product-image full-width product-active" />
+            </a>
+            <div class="margin-left-10 margin-right-10 product-title-price text-left">
+                <h2 class="margin-top-10 text-capitalize font-weight-400"><a href="product.html" class="paira-product-title">Free demo product name 10</a></h2>
+                <h1 class="display-inline-b font-weight-700"><span class="money">$70.00</span></h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12 padding-clear border-bottom border-none">-->
+                            <!--=================== Product ===================-->
+                            <!--<div class="paira-product product border-left">
+            <a href="product.html">
+                <img src="images/product/product-3.jpg" alt="" class="img-responsive center-block paira-product-image full-width inactive-product" />
 
-                                        <img src="images/product/product-4.jpg" alt="" class="img-responsive center-block paira-product-image full-width product-active" />
-                                    </a>
-                                    <div class="margin-left-10 margin-right-10 product-title-price text-left">
-                                        <h2 class="margin-top-10 text-capitalize font-weight-400"><a href="product.html" class="paira-product-title">Free demo product name 2</a></h2>
-                                        <h1 class="display-inline-b font-weight-700"><span class="money">$310.00</span></h1>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12 padding-clear border-bottom ">-->
-                                <!--=================== Product ===================-->
-                                <!--<div class="paira-product product border-left">
-                                    <a href="product.html">
-                                        <img src="images/product/product-4.jpg" alt="" class="img-responsive center-block paira-product-image full-width inactive-product" />
+                <img src="images/product/product-4.jpg" alt="" class="img-responsive center-block paira-product-image full-width product-active" />
+            </a>
+            <div class="margin-left-10 margin-right-10 product-title-price text-left">
+                <h2 class="margin-top-10 text-capitalize font-weight-400"><a href="product.html" class="paira-product-title">Free demo product name 2</a></h2>
+                <h1 class="display-inline-b font-weight-700"><span class="money">$310.00</span></h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12 padding-clear border-bottom ">-->
+                            <!--=================== Product ===================-->
+                            <!--<div class="paira-product product border-left">
+            <a href="product.html">
+                <img src="images/product/product-4.jpg" alt="" class="img-responsive center-block paira-product-image full-width inactive-product" />
 
-                                        <img src="images/product/product-5.jpg" alt="" class="img-responsive center-block paira-product-image full-width product-active" />
-                                    </a>
-                                    <div class="margin-left-10 margin-right-10 product-title-price text-left">
-                                        <h2 class="margin-top-10 text-capitalize font-weight-400"><a href="product.html" class="paira-product-title">Free demo product name 3</a></h2>
-                                        <h1 class="display-inline-b font-weight-700"><span class="money">$480.00</span></h1>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12 padding-clear border-bottom border-none">-->
-                                <!--=================== Product ===================-->
-                                <!--<div class="paira-product product border-left">
-                                    <a href="product.html">
-                                        <img src="images/product/product-5.jpg" alt="" class="img-responsive center-block paira-product-image full-width inactive-product" />
-                                        <img src="images/product/product-10.jpg" alt="" class="img-responsive center-block paira-product-image full-width product-active" />
-                                    </a>
-                                    <div class="margin-left-10 margin-right-10 product-title-price text-left">
-                                        <h2 class="margin-top-10 text-capitalize font-weight-400"><a href="product.html" class="paira-product-title">Free demo product name 4</a></h2>
-                                        <h1 class="display-inline-b font-weight-700"><span class="money">$195.00</span></h1>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12 padding-clear border-bottom ">-->
-                                <!--=================== Product ===================-->
-                                <!--<div class="paira-product product border-left">
-                                    <a href="product.html">
-                                        <img src="images/product/product-10.jpg" alt="" class="img-responsive center-block paira-product-image full-width inactive-product" />
-                                        <img src="images/product/product-7.jpg" alt="" class="img-responsive center-block paira-product-image full-width product-active" />
-                                    </a>
-                                    <div class="product-sale"><span>Sale</span></div>
-                                    <div class="margin-left-10 margin-right-10 product-title-price text-left">
-                                        <h2 class="margin-top-10 text-capitalize font-weight-400"><a href="product.html" class="paira-product-title">Free demo product name 5</a></h2>
-                                        <h1 class="display-inline-b margin-right-10 font-weight-700"><del><span class="money">$200.00</span></del></h1>
-                                        <h1 class="display-inline-b font-weight-700"><span class="money">$50.00</span></h1>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12 padding-clear border-bottom border-none">-->
-                                <!--=================== Product ===================-->
-                                <!--<div class="paira-product product border-left">
-                                    <a href="product.html">
-                                        <img src="images/product/product-7.jpg" alt="" class="img-responsive center-block paira-product-image full-width inactive-product" />
-                                        <img src="images/product/product-8.jpg" alt="" class="img-responsive center-block paira-product-image full-width product-active" />
-                                    </a>
-                                    <div class="margin-left-10 margin-right-10 product-title-price text-left">
-                                        <h2 class="margin-top-10 text-capitalize font-weight-400"><a href="product.html" class="paira-product-title">Free demo product name 6</a></h2>
-                                        <h1 class="display-inline-b font-weight-700"><span class="money">$100.00</span></h1>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12 padding-clear border-bottom ">-->
-                                <!--=================== Product ===================-->
-                                <!--<div class="paira-product product border-left">
-                                    <a href="product.html">
-                                        <img src="images/product/product-8.jpg" alt="" class="img-responsive center-block paira-product-image full-width inactive-product" />
+                <img src="images/product/product-5.jpg" alt="" class="img-responsive center-block paira-product-image full-width product-active" />
+            </a>
+            <div class="margin-left-10 margin-right-10 product-title-price text-left">
+                <h2 class="margin-top-10 text-capitalize font-weight-400"><a href="product.html" class="paira-product-title">Free demo product name 3</a></h2>
+                <h1 class="display-inline-b font-weight-700"><span class="money">$480.00</span></h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12 padding-clear border-bottom border-none">-->
+                            <!--=================== Product ===================-->
+                            <!--<div class="paira-product product border-left">
+            <a href="product.html">
+                <img src="images/product/product-5.jpg" alt="" class="img-responsive center-block paira-product-image full-width inactive-product" />
+                <img src="images/product/product-10.jpg" alt="" class="img-responsive center-block paira-product-image full-width product-active" />
+            </a>
+            <div class="margin-left-10 margin-right-10 product-title-price text-left">
+                <h2 class="margin-top-10 text-capitalize font-weight-400"><a href="product.html" class="paira-product-title">Free demo product name 4</a></h2>
+                <h1 class="display-inline-b font-weight-700"><span class="money">$195.00</span></h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12 padding-clear border-bottom ">-->
+                            <!--=================== Product ===================-->
+                            <!--<div class="paira-product product border-left">
+            <a href="product.html">
+                <img src="images/product/product-10.jpg" alt="" class="img-responsive center-block paira-product-image full-width inactive-product" />
+                <img src="images/product/product-7.jpg" alt="" class="img-responsive center-block paira-product-image full-width product-active" />
+            </a>
+            <div class="product-sale"><span>Sale</span></div>
+            <div class="margin-left-10 margin-right-10 product-title-price text-left">
+                <h2 class="margin-top-10 text-capitalize font-weight-400"><a href="product.html" class="paira-product-title">Free demo product name 5</a></h2>
+                <h1 class="display-inline-b margin-right-10 font-weight-700"><del><span class="money">$200.00</span></del></h1>
+                <h1 class="display-inline-b font-weight-700"><span class="money">$50.00</span></h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12 padding-clear border-bottom border-none">-->
+                            <!--=================== Product ===================-->
+                            <!--<div class="paira-product product border-left">
+            <a href="product.html">
+                <img src="images/product/product-7.jpg" alt="" class="img-responsive center-block paira-product-image full-width inactive-product" />
+                <img src="images/product/product-8.jpg" alt="" class="img-responsive center-block paira-product-image full-width product-active" />
+            </a>
+            <div class="margin-left-10 margin-right-10 product-title-price text-left">
+                <h2 class="margin-top-10 text-capitalize font-weight-400"><a href="product.html" class="paira-product-title">Free demo product name 6</a></h2>
+                <h1 class="display-inline-b font-weight-700"><span class="money">$100.00</span></h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12 padding-clear border-bottom ">-->
+                            <!--=================== Product ===================-->
+                            <!--<div class="paira-product product border-left">
+            <a href="product.html">
+                <img src="images/product/product-8.jpg" alt="" class="img-responsive center-block paira-product-image full-width inactive-product" />
 
-                                        <img src="images/product/product-9.jpg" alt="" class="img-responsive center-block paira-product-image full-width product-active" />
-                                    </a>
-                                    <div class="margin-left-10 margin-right-10 product-title-price text-left">
-                                        <h2 class="margin-top-10 text-capitalize font-weight-400"><a href="product.html" class="paira-product-title">Free demo product name 7</a></h2>
-                                        <h1 class="display-inline-b font-weight-700"><span class="money">$120.00</span></h1>
-                                    </div>
-                                </div>
-                            </div>-->
+                <img src="images/product/product-9.jpg" alt="" class="img-responsive center-block paira-product-image full-width product-active" />
+            </a>
+            <div class="margin-left-10 margin-right-10 product-title-price text-left">
+                <h2 class="margin-top-10 text-capitalize font-weight-400"><a href="product.html" class="paira-product-title">Free demo product name 7</a></h2>
+                <h1 class="display-inline-b font-weight-700"><span class="money">$120.00</span></h1>
+            </div>
+        </div>
+    </div>-->
                         </div>
                         <!--<div class="row paira-gap-3 text-center">
-                            <div class="col-md-12 col-sm-12 col-xs-12">-->
-                                <!--=================== pagination ===================-->
-                                <!--<ul class="list-inline pagination margin-clear">
-                                    <li class="disabled"><a><i class="fa fa-angle-left"></i></a></li>
-                                    <li class="active font-bold"><span>1</span></li>
-                                    <li><a href="#"><span>2</span></a></li>
-                                    <li><a href="#" class="prev-page"><i class=" fa fa-angle-right"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>-->
+        <div class="col-md-12 col-sm-12 col-xs-12">-->
+                        <!--=================== pagination ===================-->
+                        <!--<ul class="list-inline pagination margin-clear">
+                <li class="disabled"><a><i class="fa fa-angle-left"></i></a></li>
+                <li class="active font-bold"><span>1</span></li>
+                <li><a href="#"><span>2</span></a></li>
+                <li><a href="#" class="prev-page"><i class=" fa fa-angle-right"></i></a></li>
+            </ul>
+        </div>
+    </div>-->
                     </div>
                 </div>
             </div>
