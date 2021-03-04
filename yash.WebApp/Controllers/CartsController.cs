@@ -33,14 +33,16 @@ namespace yash.WebApp.Controllers
 
                         }
                         break;
+                    case "Checkout":
+                        return RedirectToAction("Index", "Orders");
+                    default:
+                        break;
                 }
 
 
                 //var temp = submitButton;
             }
-            //int? userIdTemp = HttpContext.Session.GetInt32("id");
-            //test>>>>
-            int userIdTemp = 1;
+            int? userIdTemp = HttpContext.Session.GetInt32("id");
             if (userIdTemp == null)
             {
                 return RedirectToAction("Login", "UsersApp");
@@ -61,14 +63,14 @@ namespace yash.WebApp.Controllers
 
         public IActionResult AddNewCart(int itemId)
         {
-            //int? userIdTemp = HttpContext.Session.GetInt32("id");
-            int userIdTemp = 1;
+            int? userIdTemp = HttpContext.Session.GetInt32("id");
+            //int userIdTemp = 1;
             if (userIdTemp == null)
             {
                 return RedirectToAction("Login", "UsersApp");
             }
             HttpClient httpclient = new HttpClient();
-            var result = httpclient.PostAsJsonAsync(uri, new CartViewModel { ItemId = itemId, UserId = userIdTemp }).Result;
+            var result = httpclient.PostAsJsonAsync(uri, new CartViewModel { ItemId = itemId, UserId = (int)userIdTemp }).Result;
             return RedirectToAction("Index");
         }
 
