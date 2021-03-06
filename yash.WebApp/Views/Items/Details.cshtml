@@ -54,7 +54,7 @@
                         <div class="col-md-6 col-sm-12 col-xs-12 product-padding">
                             
                             <h3 class="margin-bottom-20 paira-price-preview">
-                                <span class="paira-default-price"><span class="money">$@Model.Item.TotalMaking</span></span>
+                                <span class="paira-default-price"><span class="money">@string.Format("{0:C}", Model.Item.TotalMaking)</span></span>
                             </h3>
                             <div class="single-product-details paira-single-product-details margin-top-25">
                                 <p><label><b>Certification :</b></label> @Model.Item.CertifyName</p>
