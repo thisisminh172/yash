@@ -17,5 +17,6 @@ namespace yash.Application.Catalog.Items
         Task<int> Create(ItemCreateRequest request);
         //Task<int> Update(ItemUpdateReques request);
         Task<int> Delete(int itemId);
+        Task<List<ItemViewModel>> Search(string name);
     }
 }

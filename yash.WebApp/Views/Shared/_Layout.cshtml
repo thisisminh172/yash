@@ -132,72 +132,13 @@
                                 }
                                 <!--=================== Search Form ===================-->
                                 <li>
-                                    <a href="search.html">Search</a>
+                                    <form asp-action="Search" asp-controller="Items" method="get">
+                                        <input type="text" name="name" placeholder="Items name..." required />
+                                        <input type="submit" value="Search" class="btn btn-group-justified" />
+                                    </form>
                                 </li>
                             </ul>
                             <!--=================== Social Icons Footer ===================-->
-                            <ul class="list-inline margin-top-30 margin-bottom-0">
-                                <li class="margin-top-10" data-toggle="tooltip" data-placement="top" title="Facebook">
-                                    <a href="https://www.facebook.com/themetidy" target="_blank">
-                                        <i class="fa fa-facebook"></i>
-                                    </a>
-                                </li>
-                                <li class="margin-top-10" data-toggle="tooltip" data-placement="top" title="Twitter">
-                                    <a href="https://twitter.com/themetidy" target="_blank">
-                                        <i class="fa fa-twitter"></i>
-                                    </a>
-                                </li>
-                                <li class="margin-top-10" data-toggle="tooltip" data-placement="top" title="Google Plus">
-                                    <a href="https://plus.google.com/+Themetidy-Official-Page" target="_blank">
-                                        <i class="fa fa-google-plus"></i>
-                                    </a>
-                                </li>
-                                <li class="margin-top-10" data-toggle="tooltip" data-placement="top" title="Rss">
-                                    <a href="#" target="_blank">
-                                        <i class="fa fa-rss"></i>
-                                    </a>
-                                </li>
-                                <li class="margin-top-10" data-toggle="tooltip" data-placement="top" title="Pinterest">
-                                    <a href="https://pinterest.com/themetidy" target="_blank">
-                                        <i class="fa fa-pinterest"></i>
-                                    </a>
-                                </li>
-                                <li class="margin-top-10" data-toggle="tooltip" data-placement="top" title="Instagram">
-                                    <a href="https://instagram.com/themetidy" target="_blank">
-                                        <i class="fa fa-instagram"></i>
-                                    </a>
-                                </li>
-                                <li class="margin-top-10" data-toggle="tooltip" data-placement="top" title="LinkedIn">
-                                    <a href="https://www.linkedin.com/company/themetidy" target="_blank">
-                                        <i class="fa fa-linkedin"></i>
-                                    </a>
-                                </li>
-                                <li class="margin-top-10" data-toggle="tooltip" data-placement="top" title="Vimeo">
-                                    <a href="#" target="_blank">
-                                        <i class="fa fa-vimeo-square"></i>
-                                    </a>
-                                </li>
-                                <li class="margin-top-10" data-toggle="tooltip" data-placement="top" title="Youtube">
-                                    <a href="https://www.youtube.com/user/themetidy" target="_blank">
-                                        <i class="fa fa-youtube-play"></i>
-                                    </a>
-                                </li>
-                                <li class="margin-top-10" data-toggle="tooltip" data-placement="top" title="Flickr">
-                                    <a href="https://www.flickr.com/photos/themetidy" target="_blank">
-                                        <i class="fa fa-flickr"></i>
-                                    </a>
-                                </li>
-                                <li class="margin-top-10" data-toggle="tooltip" data-placement="top" title="Contact Us">
-                                    <a href="mailto:support@themetidy.com" target="_blank"><i class="fa fa-envelope-o"></i></a>
-                                </li>
-                            </ul>
-                            <ul class="list-inline margin-top-40 margin-bottom-0">
-                                <li><i class="fa fa-cc-mastercard fa-2x" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-cc-paypal fa-2x" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-cc-stripe fa-2x" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-cc-visa fa-2x" aria-hidden="true"></i></li>
-                            </ul>
-                            <p class="margin-top-40 margin-clear text-center">&copy; <a href="#" target="_blank">ThemeTidy</a>. All Rights Reserved.</p>
                         </div>
                     </div>
                 </div>

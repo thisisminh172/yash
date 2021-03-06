@@ -39,6 +39,16 @@ namespace yash.WebApi.Controllers
             }
             return Ok(item);
         }
+        [HttpGet("SearchItem/{name}")]
+        public async Task<IActionResult> SearchItem(string name)
+        {
+            var item = await _itemService.Search(name);
+            if (item == null)
+            {
+                return BadRequest("Cannot find item!");
+            }
+            return Ok(item);
+        }
 
         [HttpGet("GetAllImages/{itemId}")]
         public async Task<IActionResult> GetAllImages(int itemId)
