@@ -17,19 +17,18 @@
                                 <h1 class="page-header">New Collections</h1>
                             </div>
                             <div class="col-md-4 col-sm-4 col-xs-6 collection-padding-fix pull-left">
-                                <div class="form-group text-center margin-clear">
-                                    <label class="margin-right-10 margin-clear"><b>Sort by:</b> </label>
-                                    <select class="sort-by paira-sort-by text-capitalize">
-                                        <option value="#">Featured</option>
-                                        <option value="#">Best Selling</option>
-                                        <option value="#">Alphabetically, A-Z</option>
-                                        <option value="#">Alphabetically, Z-A</option>
-                                        <option value="#">Price, low to high</option>
-                                        <option value="#">Price, high to low</option>
-                                        <option value="#">Date, new to old</option>
-                                        <option value="#">Date, old to new</option>
-                                    </select>
-                                </div>
+                                <form asp-action="GetItemByPrice" asp-controller="Items" method="post">
+                                    <div class="form-group text-center margin-clear">
+                                        <label class="margin-right-10 margin-clear"><b>Sort by:</b> </label>
+                                        <select class="sort-by paira-sort-by text-capitalize" name="SelectOption" onchange="if (this.value != 0) { this.form.submit() }; ">
+                                            <option value="0">Select order</option>
+                                            <option value="1">Alphabetically, A-Z</option>
+                                            <option value="2">Alphabetically, Z-A</option>
+                                            <option value="3">Price, low to high</option>
+                                            <option value="4">Price, high to low</option>
+                                        </select>
+                                    </div>
+                                </form>
                             </div>
                             <div class="col-md-4 col-md-offset-4 col-sm-4 col-xs-6 collection-padding-fix pull-right">
                                 <div class="form-group text-center margin-clear">
