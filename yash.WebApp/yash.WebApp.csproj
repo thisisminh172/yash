@@ -23,5 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\yash.ViewModels\yash.ViewModels.csproj" />
   </ItemGroup>
+	
+	
 
 </Project>
