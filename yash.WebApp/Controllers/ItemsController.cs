@@ -15,7 +15,7 @@ namespace yash.WebApp.Controllers
         public IActionResult Index(int categoryId = 0, int selectedOption = 0)
         {
             HttpClient httpclient = new HttpClient();
-            if(selectedOption==0)
+            if (selectedOption == 0)
             {
                 if (categoryId != 0)
                 {
@@ -70,14 +70,14 @@ namespace yash.WebApp.Controllers
 
                 }
             }
-            
+
         }
         [HttpGet]
         public IActionResult Search(string name)
         {
             HttpClient httpClient = new HttpClient();
             var items = JsonConvert.DeserializeObject<List<ItemViewModel>>(httpClient.GetStringAsync(uri + "SearchItem/" + name).Result);
-            if (items.Count >0)
+            if (items.Count > 0)
             {
                 return View(new ItemDetailViewModel()
                 {
@@ -106,7 +106,24 @@ namespace yash.WebApp.Controllers
         [HttpPost]
         public IActionResult GetItemByPrice(int SelectOption = 0)
         {
-         return RedirectToAction("Index", "Items", new { selectedOption = SelectOption });
+            return RedirectToAction("Index", "Items", new { selectedOption = SelectOption });
+        }
+
+        [HttpPost]
+        public IActionResult GetItemByCategory(string categoryName = "")
+        {
+            HttpClient httpclient = new HttpClient();
+            var items = JsonConvert.DeserializeObject<List<ItemViewModel>>(httpclient.GetStringAsync(uri).Result);
+            var listTemp = items.Where(x => x.CategoryName.Equals(categoryName)).ToList();
+            if (listTemp.Count > 0)
+            {
+                return View("~/Views/Items/Index.cshtml", new ItemDetailViewModel() { Items = listTemp });
+            }
+            else
+            {
+                TempData["filtermess"] = "There are no items in this category!";
+                return RedirectToAction("Index", "Items");
+            }
         }
     }
 }

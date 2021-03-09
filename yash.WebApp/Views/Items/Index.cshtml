@@ -31,21 +31,25 @@
                                 </form>
                             </div>
                             <div class="col-md-4 col-md-offset-4 col-sm-4 col-xs-6 collection-padding-fix pull-right">
-                                <div class="form-group text-center margin-clear">
-                                    <label class="margin-right-10 margin-clear"><b>Categories:</b> </label>
-                                    <select class="sort-by paira-filter-category text-capitalize">
-                                        <option value="#">New collection</option>
-                                        <option value="#">Latest collection</option>
-                                        <option value="#">Hot collection</option>
-                                        <option value="#">Winter collection</option>
-                                        <option value="#">Summer collection</option>
-                                        <option value="#">Top Collection</option>
-                                    </select>
-                                </div>
+                                <form asp-action="GetItemByCategory" asp-controller="Items" method="post">
+                                    <div class="form-group text-center margin-clear">
+                                        <label class="margin-right-10 margin-clear"><b>Categories:</b> </label>
+                                        <select class="sort-by paira-filter-category text-capitalize" name="categoryName" onchange="if (this.value != null){ this.form.submit() };">
+                                            <option value="">Select Category</option>
+                                            <option value="Anniversary">Anniversary collection</option>
+                                            <option value="Birthday">Birthday collection</option>
+                                            <option value="Wedding">Wedding collection</option>
+                                            <option value="Engagement">Engagement collection</option>
+                                            @*<option value="5">Summer collection</option>
+        <option value="6">Top Collection</option>*@
+                                        </select>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                         <div class="row paira-grid-view">
                             <h3 style="color:red" class="text-center">@TempData["searchmess"]</h3>
+                            <h3 style="color:red" class="text-center">@TempData["filtermess"]</h3>
                             @foreach (var item in Model.Items)
                             {
                                 <div class="col-md-6 col-sm-6 col-xs-12 padding-clear border-bottom border-none">

@@ -125,8 +125,7 @@ namespace yash.Application.Catalog.Items
 
         public async Task<List<ItemViewModel>> GetItemsByCategory(int categoryId)
         {
-            //var items = await _context.Items.Where(x => x.CategoryId == categoryId).ToListAsync();
-
+            if(_context!=null && categoryId != 0) { 
             var query = from i in _context.Items where i.ProductId==categoryId
                         join img in _context.ItemImages on i.Id equals img.ItemId
                         where img.IsDefault == true
@@ -166,8 +165,12 @@ namespace yash.Application.Catalog.Items
                                                ItemImageUrl = img.ItemImageUrl
                                            }).ToList()
                 }).ToListAsync();
-
-            return data;
+                return data;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public async Task<List<ItemViewModel>> Search(string name)
