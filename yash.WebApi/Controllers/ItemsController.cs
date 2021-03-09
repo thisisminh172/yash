@@ -65,8 +65,10 @@ namespace yash.WebApi.Controllers
         public async Task<IActionResult> GetItemsByCategory(int categoryId)
         {
             var items = await _itemService.GetItemsByCategory(categoryId);
-            if (items.Count == 0)
-                return BadRequest("Cannot find items");
+            if (items == null)
+            {
+                return BadRequest("Cannot find item!");
+            }
             return Ok(items);
         }
     }
