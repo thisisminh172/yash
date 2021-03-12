@@ -46,7 +46,7 @@ namespace yash.WebApp.Controllers
                 return RedirectToAction("Login", "UsersApp");
             }
             HttpClient httpClient = new HttpClient();
-            var result = httpClient.PostAsJsonAsync(orderURI, new OrderCreateRequest() { UserId = (int)userId }).Result;
+            var result = httpClient.PostAsJsonAsync(orderURI+"Create/", new OrderCreateRequest() { UserId = (int)userId }).Result;
             return RedirectToAction("Finished");
         }
 

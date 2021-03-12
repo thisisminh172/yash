@@ -71,7 +71,7 @@ namespace yash.WebApp.Controllers
                     {
                         HttpContext.Session.SetString("name", user.FirstName + " " + user.LastName);
                         HttpContext.Session.SetInt32("id", user.Id);
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Items");
                     }
                     else
                     {
