@@ -48,5 +48,27 @@ namespace yash.Application.Catalog.Orders
             await _context.Orders.AddAsync(newOrder);
             return await _context.SaveChangesAsync();
         }
+
+        public async Task<List<Order>> GetAll()
+        {
+            var orders = await _context.Orders.ToListAsync();
+            return orders;
+        }
+
+        public async Task<List<OrderDetail>> GetAllOrderDetail(int orderId)
+        {
+            return await _context.OrderDetails.Where(x => x.OrderId == orderId).ToListAsync();
+
+        }
+
+        public async Task<int> UpdateOrder(Order request)
+        {
+            var order = await _context.Orders.FindAsync(request.Id);
+            order.Status = request.Status;
+            return await _context.SaveChangesAsync();
+           
+        }
+
+        
     }
 }
