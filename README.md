@@ -19,8 +19,8 @@
 #### You can go to our project page with this [Link](https://github.com/thisisminh172/EPROJECT-SEM3-GROUP1.git)
 
 ### When you clone project from git
-#### 1. Open folder ** yash ** with vs code
+#### 1. Open folder **yash** with vs code
 #### 2. Open Visual Studio and Open Yash.sln
-#### 3. In ** 2.Domain **, right-click yash.Data and ** set as StartUp Project **
-#### 4. Open tab ** Tools ** -> NuGet package Manager -> Package manager console -> run command ** update-database **
+#### 3. In **2.Domain**, right-click yash.Data and **set as StartUp Project**
+#### 4. Open tab **Tools** -> NuGet package Manager -> Package manager console -> run command **update-database**
 #### 5. in 1.Infrastructure -> yash.Utilities -> Constants -> SystemsConstants.cs -> change SQL_SERVER_NAME = "your sql server name"
