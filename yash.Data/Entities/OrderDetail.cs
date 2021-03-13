@@ -9,6 +9,7 @@ namespace yash.Data.Entities
         public int Id { get; set; }
         public int OrderId { set; get; }
         public int ItemId { set; get; }
+        public int Quantity { get; set; }
         public float Price { set; get; }
 
         public Order Order { get; set; }

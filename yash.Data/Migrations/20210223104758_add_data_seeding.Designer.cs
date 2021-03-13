@@ -10,8 +10,8 @@ using yash.Data.EF;
 namespace yash.Data.Migrations
 {
     [DbContext(typeof(YashDbContext))]
-    [Migration("20210220081902_edit_data_config")]
-    partial class edit_data_config
+    [Migration("20210223104758_add_data_seeding")]
+    partial class add_data_seeding
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,27 +31,22 @@ namespace yash.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
 
@@ -87,23 +82,6 @@ namespace yash.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("yash.Data.Entities.Brand", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("BrandType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Brands");
-                });
-
             modelBuilder.Entity("yash.Data.Entities.Cart", b =>
                 {
                     b.Property<int>("Id")
@@ -119,8 +97,8 @@ namespace yash.Data.Migrations
                     b.Property<int>("ItemId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -146,7 +124,7 @@ namespace yash.Data.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CategoryName")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -157,22 +135,22 @@ namespace yash.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CategoryName = "Anniversary"
+                            Name = "Anniversary"
                         },
                         new
                         {
                             Id = 2,
-                            CategoryName = "Birthday"
+                            Name = "Birthday"
                         },
                         new
                         {
                             Id = 3,
-                            CategoryName = "Wedding"
+                            Name = "Wedding"
                         },
                         new
                         {
                             Id = 4,
-                            CategoryName = "Engagement"
+                            Name = "Engagement"
                         });
                 });
 
@@ -185,10 +163,10 @@ namespace yash.Data.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CertifyType")
+                    b.Property<string>("LinkUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LinkUrl")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -199,20 +177,20 @@ namespace yash.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CertifyType = "BIS Hallmark",
-                            LinkUrl = "http://www.bis.org.in/"
+                            LinkUrl = "http://www.bis.org.in/",
+                            Name = "BIS Hallmark"
                         },
                         new
                         {
                             Id = 2,
-                            CertifyType = "SGL",
-                            LinkUrl = "https://sgl-labs.com/"
+                            LinkUrl = "https://sgl-labs.com/",
+                            Name = "SGL"
                         },
                         new
                         {
                             Id = 3,
-                            CertifyType = "IGI",
-                            LinkUrl = "https://www.igi.org/"
+                            LinkUrl = "https://www.igi.org/",
+                            Name = "IGI"
                         });
                 });
 
@@ -341,9 +319,6 @@ namespace yash.Data.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("BrandId")
-                        .HasColumnType("int");
-
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -366,6 +341,9 @@ namespace yash.Data.Migrations
                         .HasColumnType("real")
                         .HasDefaultValue(1f);
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
@@ -387,8 +365,6 @@ namespace yash.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BrandId");
-
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("CertifyId");
@@ -402,6 +378,152 @@ namespace yash.Data.Migrations
                     b.HasIndex("RingSizeId");
 
                     b.ToTable("Items");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            CertifyId = 1,
+                            DiamondCarat = 0.1f,
+                            DiamondId = 2,
+                            GoldId = 2,
+                            GoldWeight = 0f,
+                            Name = "The Jhonita Two Finger Ring",
+                            ProductId = 1,
+                            Quantity = 5,
+                            RingSizeId = 6,
+                            TotalMaking = 26309f,
+                            WastageInPercentage = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryId = 2,
+                            CertifyId = 2,
+                            DiamondCarat = 0.12f,
+                            DiamondId = 3,
+                            GoldId = 2,
+                            GoldWeight = 0f,
+                            Name = "The Rudri Ring",
+                            ProductId = 1,
+                            Quantity = 4,
+                            RingSizeId = 10,
+                            TotalMaking = 33609f,
+                            WastageInPercentage = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryId = 3,
+                            CertifyId = 3,
+                            DiamondCarat = 0.12f,
+                            DiamondId = 1,
+                            GoldId = 1,
+                            GoldWeight = 0f,
+                            Name = "The Maruwani Ring",
+                            ProductId = 1,
+                            Quantity = 5,
+                            RingSizeId = 20,
+                            TotalMaking = 27731f,
+                            WastageInPercentage = 0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CategoryId = 1,
+                            CertifyId = 1,
+                            DiamondCarat = 0.07f,
+                            DiamondId = 1,
+                            GoldId = 1,
+                            GoldWeight = 0f,
+                            Name = "The Arcane Stud Earrings",
+                            ProductId = 2,
+                            Quantity = 4,
+                            RingSizeId = 10,
+                            TotalMaking = 15000f,
+                            WastageInPercentage = 0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CategoryId = 2,
+                            CertifyId = 2,
+                            DiamondCarat = 0.108f,
+                            DiamondId = 1,
+                            GoldId = 2,
+                            GoldWeight = 0f,
+                            Name = "The Purva Drop Earrings",
+                            ProductId = 2,
+                            Quantity = 5,
+                            RingSizeId = 10,
+                            TotalMaking = 21593f,
+                            WastageInPercentage = 0
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CategoryId = 3,
+                            CertifyId = 3,
+                            DiamondCarat = 0.04f,
+                            DiamondId = 2,
+                            GoldId = 1,
+                            GoldWeight = 0f,
+                            Name = "The Mahima Drop Earrings",
+                            ProductId = 2,
+                            Quantity = 4,
+                            RingSizeId = 10,
+                            TotalMaking = 23000f,
+                            WastageInPercentage = 0
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CategoryId = 1,
+                            CertifyId = 1,
+                            DiamondCarat = 0.04f,
+                            DiamondId = 3,
+                            GoldId = 2,
+                            GoldWeight = 0f,
+                            Name = "The Mulam Pendant",
+                            ProductId = 3,
+                            Quantity = 4,
+                            RingSizeId = 10,
+                            TotalMaking = 21752f,
+                            WastageInPercentage = 0
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CategoryId = 2,
+                            CertifyId = 2,
+                            DiamondCarat = 0.025f,
+                            DiamondId = 3,
+                            GoldId = 1,
+                            GoldWeight = 0f,
+                            Name = "The Rohal Pendant",
+                            ProductId = 3,
+                            Quantity = 5,
+                            RingSizeId = 10,
+                            TotalMaking = 11000f,
+                            WastageInPercentage = 0
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CategoryId = 3,
+                            CertifyId = 3,
+                            DiamondCarat = 0.029f,
+                            DiamondId = 1,
+                            GoldId = 2,
+                            GoldWeight = 0f,
+                            Name = "The Ambrosia Pendant",
+                            ProductId = 3,
+                            Quantity = 4,
+                            RingSizeId = 10,
+                            TotalMaking = 7962f,
+                            WastageInPercentage = 0
+                        });
                 });
 
             modelBuilder.Entity("yash.Data.Entities.ItemImage", b =>
@@ -431,6 +553,152 @@ namespace yash.Data.Migrations
                     b.HasIndex("ItemId");
 
                     b.ToTable("ItemImages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            IsDefault = true,
+                            ItemId = 1,
+                            ItemImageUrl = "images_product/ring1.png",
+                            SortOrder = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            IsDefault = false,
+                            ItemId = 1,
+                            ItemImageUrl = "images_product/ring2.png",
+                            SortOrder = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            IsDefault = true,
+                            ItemId = 2,
+                            ItemImageUrl = "images_product/ring3.png",
+                            SortOrder = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            IsDefault = false,
+                            ItemId = 2,
+                            ItemImageUrl = "images_product/ring4.png",
+                            SortOrder = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            IsDefault = true,
+                            ItemId = 3,
+                            ItemImageUrl = "images_product/ring5.png",
+                            SortOrder = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            IsDefault = false,
+                            ItemId = 3,
+                            ItemImageUrl = "images_product/ring6.png",
+                            SortOrder = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            IsDefault = true,
+                            ItemId = 4,
+                            ItemImageUrl = "images_product/earring1.png",
+                            SortOrder = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            IsDefault = false,
+                            ItemId = 4,
+                            ItemImageUrl = "images_product/earring2.png",
+                            SortOrder = 2
+                        },
+                        new
+                        {
+                            Id = 9,
+                            IsDefault = true,
+                            ItemId = 5,
+                            ItemImageUrl = "images_product/earring3.png",
+                            SortOrder = 1
+                        },
+                        new
+                        {
+                            Id = 10,
+                            IsDefault = false,
+                            ItemId = 5,
+                            ItemImageUrl = "images_product/earring4.png",
+                            SortOrder = 2
+                        },
+                        new
+                        {
+                            Id = 11,
+                            IsDefault = true,
+                            ItemId = 6,
+                            ItemImageUrl = "images_product/earring5.png",
+                            SortOrder = 1
+                        },
+                        new
+                        {
+                            Id = 12,
+                            IsDefault = false,
+                            ItemId = 6,
+                            ItemImageUrl = "images_product/earring6.png",
+                            SortOrder = 2
+                        },
+                        new
+                        {
+                            Id = 13,
+                            IsDefault = true,
+                            ItemId = 7,
+                            ItemImageUrl = "images_product/pendant1.png",
+                            SortOrder = 1
+                        },
+                        new
+                        {
+                            Id = 14,
+                            IsDefault = false,
+                            ItemId = 7,
+                            ItemImageUrl = "images_product/pendant2.png",
+                            SortOrder = 2
+                        },
+                        new
+                        {
+                            Id = 15,
+                            IsDefault = true,
+                            ItemId = 8,
+                            ItemImageUrl = "images_product/pendant3.png",
+                            SortOrder = 1
+                        },
+                        new
+                        {
+                            Id = 16,
+                            IsDefault = false,
+                            ItemId = 8,
+                            ItemImageUrl = "images_product/pendant4.png",
+                            SortOrder = 2
+                        },
+                        new
+                        {
+                            Id = 17,
+                            IsDefault = true,
+                            ItemId = 9,
+                            ItemImageUrl = "images_product/pendant5.png",
+                            SortOrder = 1
+                        },
+                        new
+                        {
+                            Id = 18,
+                            IsDefault = false,
+                            ItemId = 9,
+                            ItemImageUrl = "images_product/pendant6.png",
+                            SortOrder = 2
+                        });
                 });
 
             modelBuilder.Entity("yash.Data.Entities.Order", b =>
@@ -446,23 +714,19 @@ namespace yash.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ShipAddress")
-                        .IsRequired()
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
 
                     b.Property<string>("ShipEmail")
-                        .IsRequired()
                         .HasColumnType("varchar(100)")
                         .HasMaxLength(100)
                         .IsUnicode(false);
 
                     b.Property<string>("ShipName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
 
                     b.Property<string>("ShipPhoneNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
 
@@ -554,7 +818,7 @@ namespace yash.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sizes");
+                    b.ToTable("RingSizes");
 
                     b.HasData(
                         new
@@ -726,6 +990,44 @@ namespace yash.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "CMT8",
+                            City = "HCM",
+                            CurrentDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "minh123@gmail.com",
+                            FirstName = "Minh",
+                            LastName = "Le",
+                            Password = "123"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Address = "3 Thang 2",
+                            City = "HCM",
+                            CurrentDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "tuan123@gmail.com",
+                            FirstName = "Tuan",
+                            LastName = "Bui",
+                            Password = "123"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Address = "Hoang Sa",
+                            City = "HCM",
+                            CurrentDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "admin123@gmail.com",
+                            FirstName = "admin",
+                            LastName = "admin",
+                            Password = "123"
+                        });
                 });
 
             modelBuilder.Entity("yash.Data.Entities.Cart", b =>
@@ -745,10 +1047,6 @@ namespace yash.Data.Migrations
 
             modelBuilder.Entity("yash.Data.Entities.Item", b =>
                 {
-                    b.HasOne("yash.Data.Entities.Brand", "Brand")
-                        .WithMany()
-                        .HasForeignKey("BrandId");
-
                     b.HasOne("yash.Data.Entities.Category", "Category")
                         .WithMany("Items")
                         .HasForeignKey("CategoryId")
@@ -773,14 +1071,14 @@ namespace yash.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("yash.Data.Entities.ProductType", "Product")
+                    b.HasOne("yash.Data.Entities.ProductType", "ProductType")
                         .WithMany("Items")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("yash.Data.Entities.RingSize", "Size")
-                        .WithMany()
+                    b.HasOne("yash.Data.Entities.RingSize", "RingSize")
+                        .WithMany("Items")
                         .HasForeignKey("RingSizeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

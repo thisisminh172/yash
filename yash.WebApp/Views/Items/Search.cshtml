@@ -1,0 +1,73 @@
+﻿@model ItemDetailViewModel
+@{
+    ViewData["Title"] = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--=================== Collection Template ===================-->
+<main class="collection-page">
+    <!--=================== Collections Product Section ===================-->
+    <section class="collection-content paira-gap-2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="paira-collection-content">
+                        <div class="row border-bottom text-capitalize">
+                            <div class="col-md-12 col-sm-4 col-xs-12 padding-clear text-center">
+                                <h1 class="page-header">New Collections</h1>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-6 collection-padding-fix pull-left">
+                                <div class="form-group text-center margin-clear">
+                                    <label class="margin-right-10 margin-clear"><b>Sort by:</b> </label>
+                                    <select class="sort-by paira-sort-by text-capitalize">
+                                        <option value="#">Featured</option>
+                                        <option value="#">Best Selling</option>
+                                        <option value="#">Alphabetically, A-Z</option>
+                                        <option value="#">Alphabetically, Z-A</option>
+                                        <option value="#">Price, low to high</option>
+                                        <option value="#">Price, high to low</option>
+                                        <option value="#">Date, new to old</option>
+                                        <option value="#">Date, old to new</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-md-offset-4 col-sm-4 col-xs-6 collection-padding-fix pull-right">
+                                <div class="form-group text-center margin-clear">
+                                    <label class="margin-right-10 margin-clear"><b>Categories:</b> </label>
+                                    <select class="sort-by paira-filter-category text-capitalize">
+                                        <option value="#">New collection</option>
+                                        <option value="#">Latest collection</option>
+                                        <option value="#">Hot collection</option>
+                                        <option value="#">Winter collection</option>
+                                        <option value="#">Summer collection</option>
+                                        <option value="#">Top Collection</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row paira-grid-view">
+                            @foreach (var item in Model.Items)
+                            {
+                                <div class="col-md-6 col-sm-6 col-xs-12 padding-clear border-bottom border-none">
+                                        <!--=================== Product ===================-->
+                                        <div class="paira-product product border-left">
+                                            <a href="@Url.Action("Details", "Items", new { itemId = item.Id })">
+                                                <img src="/@item.ThumbnailImage" alt="" class="img-responsive center-block paira-product-image full-width" />
+                                            </a>
+                                            @*<div class="product-sale"><span>Sale</span></div>*@
+                                            <div class="margin-left-10 margin-right-10 product-title-price text-left">
+                                                <h2 class="margin-top-10 text-capitalize font-weight-400"><a href="product.html" class="paira-product-title">@item.Name</a></h2>
+                                                @*<h1 class="display-inline-b margin-right-10 font-weight-700"><del><span class="money">$300.00</span></del></h1>*@
+                                                <h1 class="display-inline-b font-weight-700"><span class="money">@string.Format("{0:C}", item.TotalMaking)</span></h1>
+                                            </div>
+                                        </div>
+                                </div>
+                             }  
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+

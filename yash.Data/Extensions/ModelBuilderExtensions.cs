@@ -74,6 +74,43 @@ namespace yash.Data.Extensions
                 new Certification() { Id=2, Name = "SGL",LinkUrl= "https://sgl-labs.com/" },
                 new Certification() { Id=3, Name = "IGI",LinkUrl= "https://www.igi.org/" }
                 );
+            modelBuilder.Entity<User>().HasData(
+                new User() { Id=1, FirstName="Minh", LastName = "Le", Address="CMT8", Email = "minh123@gmail.com",City="HCM",Password="123"},
+                new User() { Id=2, FirstName="Tuan", LastName = "Bui", Address="3 Thang 2", Email = "tuan123@gmail.com",City="HCM",Password="123"},
+                new User() { Id=3, FirstName="admin", LastName = "admin", Address="Hoang Sa", Email = "admin123@gmail.com",City="HCM",Password="123" }
+                );
+            modelBuilder.Entity<Item>().HasData(
+                new Item() { Id=1,Quantity=5,CategoryId=1,CertifyId=1,ProductId=1,TotalMaking=26309f,GoldId=2,DiamondId=2,DiamondCarat=0.1f,RingSizeId=6,Name= "The Jhonita Two Finger Ring" },
+                new Item() { Id = 2, Quantity = 4, CategoryId = 2, CertifyId = 2, ProductId = 1, TotalMaking = 33609f, GoldId = 2, DiamondId = 3, DiamondCarat = 0.12f, RingSizeId = 10, Name = "The Rudri Ring" },
+                new Item() { Id = 3, Quantity = 5, CategoryId = 3, CertifyId = 3, ProductId = 1, TotalMaking = 27731f, GoldId = 1, DiamondId = 1, DiamondCarat = 0.12f, RingSizeId = 20, Name = "The Maruwani Ring" },
+                new Item() { Id = 4, Quantity = 4, CategoryId = 1, CertifyId = 1, ProductId = 2, TotalMaking = 15000f, GoldId = 1, DiamondId = 1, DiamondCarat = 0.07f, RingSizeId = 10, Name = "The Arcane Stud Earrings" },
+                new Item() { Id = 5, Quantity = 5, CategoryId = 2, CertifyId = 2, ProductId = 2, TotalMaking = 21593f, GoldId = 2, DiamondId = 1, DiamondCarat = 0.108f, RingSizeId = 10, Name = "The Purva Drop Earrings" },
+                new Item() { Id = 6, Quantity = 4, CategoryId = 3, CertifyId = 3, ProductId = 2, TotalMaking = 23000f, GoldId = 1, DiamondId = 2, DiamondCarat = 0.04f, RingSizeId = 10, Name = "The Mahima Drop Earrings" },
+                new Item() { Id = 7, Quantity = 4, CategoryId = 1, CertifyId = 1, ProductId = 3, TotalMaking = 21752f, GoldId = 2, DiamondId = 3, DiamondCarat = 0.04f, RingSizeId = 10, Name = "The Mulam Pendant" },
+                new Item() { Id = 8, Quantity = 5, CategoryId = 2, CertifyId = 2, ProductId = 3, TotalMaking = 11000f, GoldId = 1, DiamondId = 3, DiamondCarat = 0.025f, RingSizeId = 10, Name = "The Rohal Pendant" },
+                new Item() { Id = 9, Quantity = 4, CategoryId = 3, CertifyId = 3, ProductId = 3, TotalMaking = 7962f, GoldId = 2, DiamondId = 1, DiamondCarat = 0.029f, RingSizeId = 10, Name = "The Ambrosia Pendant" }
+                );
+            modelBuilder.Entity<ItemImage>().HasData(
+                new ItemImage() { Id=1, ItemId=1,ItemImageUrl= "images_product/ring1.png", IsDefault=true,SortOrder=1},
+                new ItemImage() { Id=2, ItemId=1,ItemImageUrl= "images_product/ring2.png", IsDefault=false,SortOrder=2 },
+                new ItemImage() { Id=3, ItemId=2,ItemImageUrl= "images_product/ring3.png", IsDefault=true,SortOrder=1 },
+                new ItemImage() { Id=4, ItemId=2,ItemImageUrl= "images_product/ring4.png", IsDefault=false,SortOrder=2 },
+                new ItemImage() { Id=5, ItemId=3,ItemImageUrl= "images_product/ring5.png", IsDefault=true,SortOrder=1 },
+                new ItemImage() { Id=6, ItemId=3,ItemImageUrl= "images_product/ring6.png", IsDefault=false,SortOrder=2 },
+                new ItemImage() { Id=7, ItemId=4,ItemImageUrl= "images_product/earring1.png", IsDefault=true,SortOrder=1 },
+                new ItemImage() { Id=8, ItemId=4,ItemImageUrl= "images_product/earring2.png", IsDefault=false,SortOrder=2 },
+                new ItemImage() { Id=9, ItemId=5,ItemImageUrl= "images_product/earring3.png", IsDefault=true,SortOrder=1 },
+                new ItemImage() { Id=10, ItemId=5,ItemImageUrl= "images_product/earring4.png", IsDefault=false,SortOrder=2 },
+                new ItemImage() { Id=11, ItemId=6,ItemImageUrl= "images_product/earring5.png", IsDefault=true,SortOrder=1 },
+                new ItemImage() { Id=12, ItemId=6,ItemImageUrl= "images_product/earring6.png", IsDefault=false,SortOrder=2 },
+                new ItemImage() { Id=13, ItemId=7,ItemImageUrl= "images_product/pendant1.png", IsDefault=true,SortOrder=1 },
+                new ItemImage() { Id=14, ItemId=7,ItemImageUrl= "images_product/pendant2.png", IsDefault=false,SortOrder=2 },
+                new ItemImage() { Id=15, ItemId=8,ItemImageUrl= "images_product/pendant3.png", IsDefault=true,SortOrder=1 },
+                new ItemImage() { Id=16, ItemId=8,ItemImageUrl= "images_product/pendant4.png", IsDefault=false,SortOrder=2 },
+                new ItemImage() { Id=17, ItemId=9,ItemImageUrl= "images_product/pendant5.png", IsDefault=true,SortOrder=1 },
+                new ItemImage() { Id=18, ItemId=9,ItemImageUrl= "images_product/pendant6.png", IsDefault=false,SortOrder=2 }
+                );
+
         }
     }
 }

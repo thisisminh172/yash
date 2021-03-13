@@ -14,7 +14,6 @@ namespace yash.Data.Configurations
             builder.ToTable("RingSizes");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseIdentityColumn();
-            builder.Property(x => x.SizeNumber).IsRequired();
         }
 
     }

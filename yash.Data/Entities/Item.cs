@@ -35,13 +35,12 @@ namespace yash.Data.Entities
 
         public int RingSizeId { get; set; }
 
-        public RingSize Size { get; set; }
+        public RingSize RingSize { get; set; }
 
         public Gold Gold { get; set; }
         public Diamond Diamond { get; set; }
         public Certification Certification { get; set; }
-        public ProductType Product { get; set; }
-        public Brand Brand { get; set; }
+        public ProductType ProductType { get; set; }
         public Category Category { get; set; }
 
         public List<ItemImage> ItemImages { get; set; }
