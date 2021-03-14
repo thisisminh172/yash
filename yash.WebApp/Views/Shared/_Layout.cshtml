@@ -56,7 +56,7 @@
             <section class="header-top">
                 <div>
                     <div class="logo-text">
-                        <a href="index.html">
+                        <a href="@Url.Action("Index","Home")">
                             <img src="/images/logos.png" class="img-responsive" alt="">
                         </a>
                     </div>
@@ -86,7 +86,7 @@
                             <h3>Menu</h3>
                             <ul class="list-unstyled nav-fix margin-top-30 margin-bottom-0">
                                 <li class="active">
-                                    <a href="@Url.Action("Index","Items")">Home</a>
+                                    <a href="@Url.Action("Index","Home")">Home</a>
                                     @*@Html.ActionLink("Home", "Index")*@
                                 </li>
                                 <li class="">
