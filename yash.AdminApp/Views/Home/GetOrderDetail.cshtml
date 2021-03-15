@@ -3,26 +3,73 @@
     ViewData["Title"] = "GetOrderDetail";
 }
 
-<h1>List orders of order id: @Model.orderId</h1>
+<h1>Detail information of Order: @Model.orderId</h1>
+<h2 class="text-danger">Customer Information</h2>
+<table class="table table-bordered table-warning table-hover table-striped w-50">
+    <tr>
+        <th>Customer name</th>
+        <td>@Model.user.LastName, @Model.user.FirstName</td>
+    </tr>
+    <tr>
+        <th>Address</th>
+        <td>@Model.user.Address</td>
+    </tr>
+    <tr>
+        <th>City</th>
+        <td>@Model.user.City</td>
+    </tr>
+    <tr>
+        <th>State</th>
+        <td>@Model.user.State</td>
+    </tr>
+    <tr>
+        <th>Phone number</th>
+        <td>@Model.user.PhoneNumber</td>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <td>@Model.user.Email</td>
+    </tr>
+    <tr>
+        <th>Date of Birth</th>
+        <td>@Convert.ToDateTime(Model.user.DOB).ToString("dd/MM/yyyy")</td>
+    </tr>
+</table>
+<h2 class="text-danger">Order List</h2>
 <table class="table table-bordered table-hover table-striped">
     <thead>
         <tr>
             <th>Order Id</th>
-            <th>Item Id</th>
+            <th>Item Name</th>
+            <th>Product type</th>
+            <th>Certify name</th>
+            <th>Gold carat</th>
+            <th>Diamond carat</th>
+            <th>Diamond shape</th>
             <th>Quantity</th>
             <th>Price</th>
         </tr>
     </thead>
     <tbody>
-        @for (var i = 0; i < Model.orderDetails.Count; i++)
+        @{ 
+            float totalPrice = 0f;
+        }
+        @for (var i = 0; i < Model.orderDetailAdminViewModels.Count; i++)
         {
+            totalPrice += Model.orderDetailAdminViewModels[i].Price;
         <tr>
-            <td>@Model.orderDetails[i].OrderId</td>
-            <td>@Model.orderDetails[i].ItemId</td>
-            <td>@Model.orderDetails[i].Quantity</td>
-            <td>@Model.orderDetails[i].Price</td>
+            <td>@Model.orderDetailAdminViewModels[i].OrderId</td>
+            <td>@Model.orderDetailAdminViewModels[i].ItemName</td>
+            <td>@Model.orderDetailAdminViewModels[i].ProductName</td>
+            <td>@Model.orderDetailAdminViewModels[i].CertifyName</td>
+            <td>@Model.orderDetailAdminViewModels[i].GoldCaratName</td>
+            <td>@Model.orderDetailAdminViewModels[i].DiamondCarat</td>
+            <td>@Model.orderDetailAdminViewModels[i].DiamondShape</td>
+            <td>@Model.orderDetailAdminViewModels[i].Quantity</td>
+            <td>@string.Format("{0:C}", Model.orderDetailAdminViewModels[i].Price)</td>
         </tr>
         }
     </tbody>
 </table>
+<h3 class="float-right pr-3">Total price: @string.Format("{0:C}", totalPrice)</h3>
 <a href="@Url.Action("Index")">Go back</a>
