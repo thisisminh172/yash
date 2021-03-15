@@ -87,16 +87,15 @@ namespace yash.AdminApp.Controllers
         }
 
         //show graph
-        
+        [HttpGet]
         public IActionResult ShowHistoty()
         {
             HttpClient httpclient = new HttpClient();
             var temp = JsonConvert.DeserializeObject<List<OrderAdminViewModel>>(httpclient.GetStringAsync(uri + "GetAllOrderData").Result);
-                //.Where(x => x.Status == OrderStatus.Success)
-                //.GroupBy(d=>d.OrderDate.ToString("MM/yyyy"))
-                //.Select(g => new { month = g.Key, total = g.Sum(w => w.TotalOfPrice) }).ToList();
+                
+            var data = temp.Where(x => x.Status == OrderStatus.Success).ToList();
             return View(new CommonViewModel() { 
-                orderData = JsonConvert.SerializeObject(temp)
+                orderData = JsonConvert.SerializeObject(data)
             });
         }
 
