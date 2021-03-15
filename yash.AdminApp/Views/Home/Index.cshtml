@@ -62,22 +62,24 @@
                 <table class="table table-bordered" id="" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Address</th>
-                            <th>Email</th>
-                            <th>Status</th>
+                            <th>Customer's FullName</th>
+                            <th>Shipping Address</th>
+                            <th>Customer's Email</th>
+                            <th>Order Status</th>
+                            <th>Order Date</th>
                             <th>Phone number</th>
-                            <th>Detail</th>
+                            <th>See Details</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Name</th>
-                            <th>Address</th>
-                            <th>Email</th>
-                            <th>Status</th>
+                            <th>Customer's FullName</th>
+                            <th>Shipping Address</th>
+                            <th>Customer's Email</th>
+                            <th>Order Status</th>
+                            <th>Order Date</th>
                             <th>Phone number</th>
-                            <th>Detail</th>
+                            <th>See Details</th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -101,8 +103,9 @@
                                         </select>
                                     </form>
                                 </td>
+                                <td>@order.OrderDate</td>
                                 <td>@order.ShipPhoneNumber</td>
-                                <td><a href="@Url.Action("GetOrderDetail","Home",new { orderId = order.Id})">Details</a></td>
+                                <td><a href="@Url.Action("GetOrderDetail","Home",new { orderId = order.Id, userId = order.UserId})">Go To Details</a></td>
                             </tr>
                         }
 

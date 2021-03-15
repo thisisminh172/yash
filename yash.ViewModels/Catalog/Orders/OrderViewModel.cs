@@ -11,6 +11,8 @@ namespace yash.ViewModels.Catalog.Orders
 
         public string FirstName { get; set; }
 
+        public DateTime OrderDate { get; set; }
+
         public string LastName { get; set; }
 
         public string Address { get; set; }
