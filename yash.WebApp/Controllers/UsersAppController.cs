@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using yash.Data.Entities;
 using yash.Utilities.Constants;
 using yash.ViewModels.Users;
+using yash.WebApp.Models;
+
 
 namespace yash.WebApp.Controllers
 {
@@ -112,6 +114,17 @@ namespace yash.WebApp.Controllers
             }
             ViewBag.mess = "Password change failed";
             return View(pUser.Id);
+        }
+        [HttpGet]
+        public async Task<IActionResult> UserDetails(int id)
+        {
+            HttpClient httpClient = new HttpClient();
+            var user = JsonConvert.DeserializeObject<UserDetails>(httpClient.GetStringAsync(uri + "GetUserDetail/" + id).Result);
+            var userDetails = new UserDetailsViewModel()
+            {
+                User = user
+            };
+            return View(userDetails);
         }
     }
 }

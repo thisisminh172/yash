@@ -83,5 +83,18 @@ namespace yash.WebApi.Controllers
                 return Ok();
             }
         }
+        [HttpGet("GetUserDetail/{id}")]
+        public async Task<IActionResult> GetUserDetail(int id)
+        {
+            var user = await userService.UserDetails(id);
+            if (user == null)
+            {
+                return null;
+            }
+            else
+            {
+                return Ok(user);
+            }
+        }
     }
 }

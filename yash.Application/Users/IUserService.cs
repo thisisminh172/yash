@@ -14,5 +14,6 @@ namespace yash.Application.Users
         Task<IEnumerable<User>> GetUser();
         Task<UserViewModel> CheckUser(int id);
         Task<bool> changPass(User user);
+        Task<UserDetails> UserDetails(int id);
     }
 }
