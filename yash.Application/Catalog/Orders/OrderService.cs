@@ -71,7 +71,7 @@ namespace yash.Application.Catalog.Orders
             var data = query.Select(x => new OrderAdminViewModel()
             {
                 OrderId = x.o.Id,
-                OrderDate = x.o.OrderDate,
+                OrderDate = x.o.OrderDate.ToString("MM,yyyy"),
                 Status = x.o.Status,
                 TotalOfPrice = _context.OrderDetails.Where(y=>y.OrderId==x.o.Id).Select(x=>x.Price).Sum()
             }).ToListAsync();

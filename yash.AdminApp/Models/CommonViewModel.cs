@@ -13,7 +13,7 @@ namespace yash.AdminApp.Models
         public List<Order> orders { get; set; }
         public int orderId { get; set; }
         public List<OrderDetail> orderDetails { get; set; }
-        public string orderData { get; set; }
+        public List<OrderAdminViewModel> orderData { get; set; }
         public UserViewModel user { get; set; }
 
         public List<OrderDetailAdminViewModel> orderDetailAdminViewModels { get; set; }
