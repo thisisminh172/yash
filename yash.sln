@@ -16,6 +16,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.Solution Items", "0.Solution Items", "{230EDE78-85C4-4243-AF88-A9EF676145F7}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
+		run-apps.bat = run-apps.bat
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Domain", "2.Domain", "{4E6ADB72-66B8-4B87-A43E-85AFED3EEF6F}"
@@ -27,10 +28,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "yash.ViewModels", "yash.ViewModels\yash.ViewModels.csproj", "{FC03863A-7374-4ACA-AE6C-6857EE9A4BF2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "yash.Utilities", "yash.Utilities\yash.Utilities.csproj", "{C9CD752B-5CB7-4A9C-B0BD-3F9F86A64F2F}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "admin-template", "admin-template", "{8C6D68D8-0602-40F6-BE69-0C5800A5E498}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "client-template", "client-template", "{DFE965A0-9B75-4523-9ACD-50106636AE6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -78,8 +75,6 @@ Global
 		{FEA3F400-76B9-41EA-898E-F35DBF2F450A} = {8B80FB04-AEB0-48DE-8401-879632FC4C48}
 		{FC03863A-7374-4ACA-AE6C-6857EE9A4BF2} = {7ACE27FA-F01F-499F-A281-1CC19194A7A2}
 		{C9CD752B-5CB7-4A9C-B0BD-3F9F86A64F2F} = {7ACE27FA-F01F-499F-A281-1CC19194A7A2}
-		{8C6D68D8-0602-40F6-BE69-0C5800A5E498} = {230EDE78-85C4-4243-AF88-A9EF676145F7}
-		{DFE965A0-9B75-4523-9ACD-50106636AE6F} = {230EDE78-85C4-4243-AF88-A9EF676145F7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9BC9CD27-6D98-4F80-A29F-657525AD4EA4}
