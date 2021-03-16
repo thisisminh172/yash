@@ -55,9 +55,54 @@ namespace yash.Application.Catalog.Orders
             return orders;
         }
 
-        public async Task<List<OrderDetail>> GetAllOrderDetail(int orderId)
+        public Task<List<OrderAdminViewModel>> GetAllOrderData()
         {
-            return await _context.OrderDetails.Where(x => x.OrderId == orderId).ToListAsync();
+
+
+            //var data = _context.Orders.Select(x=>new OrderAdminViewModel()
+            //{
+            //    OrderId = x.Id,
+            //    OrderDate = x.OrderDate,
+            //    Status = x.Status,
+            //    TotalOfPrice = _context.OrderDetails.Where(y=>y.OrderId==x.Id).Select(x=>x.Price).Sum()
+            //}).ToListAsync();
+            var query = from o in _context.Orders
+                        select new { o };
+            var data = query.Select(x => new OrderAdminViewModel()
+            {
+                OrderId = x.o.Id,
+                OrderDate = x.o.OrderDate.ToString("MM,yyyy"),
+                Status = x.o.Status,
+                TotalOfPrice = _context.OrderDetails.Where(y=>y.OrderId==x.o.Id).Select(x=>x.Price).Sum()
+            }).ToListAsync();
+            return data;
+        }
+
+        public async Task<List<OrderDetailAdminViewModel>> GetAllOrderDetail(int orderId)
+        {
+
+            var query = from od in _context.OrderDetails
+                        where od.OrderId == orderId
+                        join i in _context.Items on od.ItemId equals i.Id
+                        join pt in _context.ProductTypes on i.ProductId equals pt.Id
+                        join c in _context.Certifications on i.CertifyId equals c.Id
+                        join g in _context.Golds on i.GoldId equals g.Id
+                        join d in _context.Diamonds on i.DiamondId equals d.Id
+                        select new { od, i, pt, c, g, d };
+            var data = await query.Select(x => new OrderDetailAdminViewModel()
+            {
+                Id = x.od.Id,
+                OrderId = x.od.OrderId,
+                ItemName = x.i.Name,
+                ProductName = x.pt.Name,
+                CertifyName = x.c.Name,
+                GoldCaratName = x.g.GoldCarat,
+                DiamondCarat = x.i.DiamondCarat,
+                DiamondShape = x.d.DiamondShape,
+                Quantity = x.od.Quantity,
+                Price = x.od.Price
+            }).ToListAsync();
+            return data;
 
         }
 

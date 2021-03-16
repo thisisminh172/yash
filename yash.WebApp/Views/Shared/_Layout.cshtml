@@ -56,7 +56,7 @@
             <section class="header-top">
                 <div>
                     <div class="logo-text">
-                        <a href="index.html">
+                        <a href="@Url.Action("Index","Home")">
                             <img src="/images/logos.png" class="img-responsive" alt="">
                         </a>
                     </div>
@@ -86,7 +86,7 @@
                             <h3>Menu</h3>
                             <ul class="list-unstyled nav-fix margin-top-30 margin-bottom-0">
                                 <li class="active">
-                                    <a href="@Url.Action("Index","Items")">Home</a>
+                                    <a href="@Url.Action("Index","Home")">Home</a>
                                     @*@Html.ActionLink("Home", "Index")*@
                                 </li>
                                 <li class="">
@@ -111,11 +111,10 @@
                                 @if (Context.Session.GetString("name") != null)
                                 {
                                     <li>
-                                        <form asp-action="ChangePass" asp-controller="UsersApp" method="get">
+                                        <form asp-action="UserDetails" asp-controller="UsersApp" method="get">
                                             <input hidden type="number" value="@Context.Session.GetInt32("id")" name="id" />
                                             <input type="submit" value="@Context.Session.GetString("name")" class="btn btn-group-justified" />
                                         </form>
-                                        @*@Html.ActionLink(@"Context.Session.GetString('name')","ChangePass","UsersApp",new { id= @Context.Session.GetInt32("id") })*@
                                     </li>
                                     <li>
                                         <form asp-action="LogOut" asp-controller="UsersApp" method="post">
@@ -135,12 +134,24 @@
                                 <!--=================== Search Form ===================-->
                                 <li>
                                     <form asp-action="Search" asp-controller="Items" method="get">
-                                        <input type="text" name="name" placeholder="Items name..." required />
-                                        <input type="submit" value="Search" class="btn btn-group-justified" />
+                                        <input type="text" name="name" placeholder="Search by item name..." required />
                                     </form>
                                 </li>
                             </ul>
                             <!--=================== Social Icons Footer ===================-->
+                            <ul class="list-inline margin-top-30 margin-bottom-0">
+                                <li class="margin-top-10" data-toggle="tooltip" data-placement="top" title="Facebook">
+                                    <a href="https://www.facebook.com/aptech.fpt/" target="_blank">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li class="margin-top-10" data-toggle="tooltip" data-placement="top" title="Twitter">
+                                    <a href="https://twitter.com/aptechltd" target="_blank">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <p class="margin-top-40 margin-clear text-center">&copy; <a href="https://www.aptech-worldwide.com/" target="_blank">ThemeTidy</a>. Copyright © 2021 Aptech Ltd. All rights reserved..</p>
                         </div>
                     </div>
                 </div>

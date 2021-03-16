@@ -54,5 +54,12 @@ namespace yash.WebApi.Controllers
             var result = await _orderService.GetAllOrderDetail(orderId);
             return Ok(result);
         }
+
+        [HttpGet("GetAllOrderData")]
+        public async Task<IActionResult> OrderDataList()
+        {
+            var result = await _orderService.GetAllOrderData();
+            return Ok(result);
+        }
     }
 }

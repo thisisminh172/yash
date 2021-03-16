@@ -12,6 +12,8 @@ namespace yash.Application.Catalog.Orders
         Task<int> Create(OrderCreateRequest request);
         Task<List<Order>> GetAll();
         Task<int> UpdateOrder(Order request);
-        Task<List<OrderDetail>> GetAllOrderDetail(int orderId);
+        Task<List<OrderDetailAdminViewModel>> GetAllOrderDetail(int orderId);
+
+        Task<List<OrderAdminViewModel>> GetAllOrderData();
     }
 }
