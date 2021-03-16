@@ -8,94 +8,155 @@
         <div class="row">
             <div class="col-md-12 about-desc">
                 <h3 style="text-align : center">Account Information</h3>
-                @foreach (var item in Model.UserDetails)
-                {
                     <table class="table table-striped table-bordered">
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.User.Email)
+                                @Html.DisplayNameFor(model => model.UserDetails.Email)
                             </th>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Email)
+                                @Html.DisplayFor(model => model.UserDetails.Email)
                             </td>
                         </tr>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.User.FirstName)
+                                @Html.DisplayNameFor(model => model.UserDetails.FirstName)
                             </th>
                             <td>
-                                @Html.DisplayFor(modelItem => item.FirstName)
+                                @Html.DisplayFor(model => model.UserDetails.FirstName)
                             </td>
                         </tr>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.User.LastName)
+                                @Html.DisplayNameFor(model => model.UserDetails.LastName)
                             </th>
                             <td>
-                                @Html.DisplayFor(modelItem => item.LastName)
+                                @Html.DisplayFor(model => model.UserDetails.LastName)
                             </td>
                         </tr>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.User.PhoneNumber)
+                                @Html.DisplayNameFor(model => model.UserDetails.PhoneNumber)
                             </th>
                             <td>
-                                @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                @Html.DisplayFor(model => model.UserDetails.PhoneNumber)
                             </td>
                         </tr>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.User.Address)
+                                @Html.DisplayNameFor(model => model.UserDetails.Address)
                             </th>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Address)
+                                @Html.DisplayFor(model => model.UserDetails.Address)
                             </td>
                         </tr>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.User.City)
+                                @Html.DisplayNameFor(model => model.UserDetails.City)
                             </th>
                             <td>
-                                @Html.DisplayFor(modelItem => item.City)
+                                @Html.DisplayFor(model => model.UserDetails.City)
                             </td>
                         </tr>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.User.State)
+                                @Html.DisplayNameFor(model => model.UserDetails.State)
                             </th>
                             <td>
-                                @Html.DisplayFor(modelItem => item.State)
+                                @Html.DisplayFor(model => model.UserDetails.State)
                             </td>
                         </tr>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.User.DOB)
+                                @Html.DisplayNameFor(model => model.UserDetails.DOB)
                             </th>
                             <td>
-                                @Html.FormatValue(item.DOB, "{0:yyy-MMM-ddd}")
+                                @Html.FormatValue(Model.UserDetails.DOB, "{0:yyy-MMM-ddd}")
                             </td>
                         </tr>
                     </table>
                     <h4 style="text-align : right">
-                        @Html.ActionLink("Change Password", "ChangePass", new { id = item.Id })
+                        @Html.ActionLink("Change Password", "ChangePass", new { id = Model.UserDetails.Id })
                     </h4>
-                }
             </div>
             <div class="col-md-12 about-desc">
                 <h3 style="text-align:left">Order history</h3>
-                @foreach (var item in Model.UserDetails)
-                {
-                    <table class="table table-striped table-bordered">
+                <table class="table table-bordered table-hover">
+                    <thead>
                         <tr>
                             <th>
-                                Code Orders
+                                Order Date
                             </th>
-                            <td>
-                                @Html.DisplayNameFor(model => model.UserOrders)
-                            </td>
+                            <th>
+                                Delivery Address
+                            </th>
+                            <th>
+                                Status
+                            </th>
                         </tr>
-                    </table> }
-                </div>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.UserDetails.Orders)
+                        {
+                            <tr data-toggle="collapse" data-target="#@item.Id" class="accordion-toggle">
+                                <td class="text-warning text-center font-weight-700 success">
+                                    @Html.DisplayFor(modelItem => item.OrderDate)
+                                </td>
+                                <td class="text-warning text-center font-weight-700 success">
+                                    @Html.DisplayFor(modelItem => item.ShipAddress)
+                                </td>
+                                <td class="text-warning text-center font-weight-700 success">
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" class="hiddenRow" style="padding: 0 4px !important; background-color: #eeeeee; font-size: 13px;" >
+                                    <div class="accordian-body collapse" id="@item.Id">
+                                        <h4 class="text-info">Order Details</h4>
+                                        <table class="table table-striped table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        Item Name
+                                                    </th>
+                                                    <th>
+                                                        Quantity
+                                                    </th>
+                                                    <th>
+                                                        Price
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach(var orderDetail in item.OrderDetails)
+                                                {
+                                                <tr>
+                                                    <td>
+                                                       @orderDetail.ItemName
+                                                    </td>
+                                                    <td>
+                                                        @orderDetail.Quantity
+                                                    </td>
+                                                    <td>
+                                                        @orderDetail.Price
+                                                    </td>
+                                                </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                 </table>
         </div>
     </div>
 </main>
+<script>
+    $('.accordian-body').on('show.bs.collapse', function () {
+    $(this).closest("table")
+        .find(".collapse.in")
+        .not(this)
+        .collapse('toggle')
+})
+</script>

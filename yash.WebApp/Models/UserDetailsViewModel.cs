@@ -8,11 +8,9 @@ namespace yash.WebApp.Models
 {
     public class UserDetailsViewModel
     {
-        public UserDetails User { get; set; }
-
-
-        public List<UserDetails> UserDetails { get; set; }
-        public List<UserOrder> UserOrders { get; set; }
-        public List<UserOrderDetails> UserOrderDetails { get; set; }
+        //public UserDetails User { get; set; }
+        public UserDetails UserDetails { get; set; }
+        public UserOrder UserOrders { get; set; }
+        public UserOrderDetails UserOrderDetails { get; set; }
     }
 }

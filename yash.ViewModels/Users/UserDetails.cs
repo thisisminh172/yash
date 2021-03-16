@@ -24,9 +24,9 @@ namespace yash.ViewModels.Users
         public string Email { get; set; }
 
         public DateTime DOB { get; set; }
+
         public string Password { get; set; }
 
         public List<UserOrder> Orders { get; set; }
-        public List<UserOrderDetails> OrderDetails { get; set; }
     }
 }

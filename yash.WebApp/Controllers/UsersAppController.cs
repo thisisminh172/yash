@@ -122,7 +122,7 @@ namespace yash.WebApp.Controllers
             var user = JsonConvert.DeserializeObject<UserDetails>(httpClient.GetStringAsync(uri + "GetUserDetail/" + id).Result);
             var userDetails = new UserDetailsViewModel()
             {
-                User = user
+                UserDetails = user
             };
             return View(userDetails);
         }

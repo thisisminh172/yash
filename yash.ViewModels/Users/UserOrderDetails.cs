@@ -13,9 +13,5 @@ namespace yash.ViewModels.Users
         public int Quantity { get; set; }
         public float Price {get; set; }
         public string ItemName { get; set; }
-
-        public UserOrder Order { get; set; }
-
-        public ItemViewModel Item { get; set; }
     }
 }

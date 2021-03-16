@@ -15,9 +15,6 @@ namespace yash.ViewModels.Users
         public string ShipEmail { set; get; }
         public string ShipPhoneNumber { set; get; }
         public OrderStatus Status { set; get; }
-
         public List<UserOrderDetails> OrderDetails { get; set; }
-
-        public UserDetails User { get; set; }
     }
 }
