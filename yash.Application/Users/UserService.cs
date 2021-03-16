@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using yash.Data.EF;
 using yash.Data.Entities;
+using yash.ViewModels.Catalog.Orders;
 using yash.ViewModels.Users;
 
 namespace yash.Application.Users
@@ -105,6 +107,99 @@ namespace yash.Application.Users
             }
             return false;
         }
+
+        public async Task<UserDetails> UserDetails(int id)
+        {
+            if (id > 0 && db.Users != null)
+            {
+
+                var user = await db.Users.FindAsync(id);
+                //var orders = await db.Orders.Where(x => x.UserId == user.Id).ToListAsync();
+                var data = new UserDetails()
+                {
+                    Id = user.Id,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Address = user.Address,
+                    City = user.City,
+                    State = user.State,
+                    PhoneNumber = user.PhoneNumber,
+                    Email = user.Email,
+                    DOB = user.DOB,
+                    Orders  = (from order in db.Orders
+                               where order.UserId ==user.Id
+                               select new UserOrder()
+                               {
+                                   Id = order.Id,
+                                   OrderDate = order.OrderDate,
+                                   ShipName = order.ShipName,
+                                   ShipAddress = order.ShipAddress,
+                                   ShipEmail = order.ShipEmail,
+                                   ShipPhoneNumber = order.ShipPhoneNumber,
+                                   Status = order.Status,
+                                   OrderDetails = (from orderDetail in db.OrderDetails
+                                                   where orderDetail.OrderId == order.Id
+                                                   select new UserOrderDetails()
+                                                   {
+                                                       Id = orderDetail.Id,
+                                                       OrderId = orderDetail.OrderId,
+                                                       ItemId = orderDetail.ItemId,
+                                                       Quantity = orderDetail.Quantity,
+                                                       Price = orderDetail.Price,
+                                                       ItemName = db.Items.FirstOrDefault(x=>x.Id==orderDetail.ItemId).Name
+                                                   }).ToList()
+                               }).ToList(),
+                };
+                //var query = from u in db.Users
+                //            where u.Id == id
+                //            join o in db.Orders on u.Id equals o.UserId into uo
+                //            from o in uo.DefaultIfEmpty()
+                //            join od in db.OrderDetails on o.Id equals od.OrderId into uod
+                //            from od in uod.DefaultIfEmpty()
+                //            join itemname in db.Items on od.ItemId equals itemname.Id into iname
+                //            from itemname in iname.DefaultIfEmpty()
+                //            select new { u, o, od, itemname };
+                //var data = await query
+                //    .Select(x => new UserDetails()
+                //    {
+                //        Id = x.u.Id,
+                //        FirstName = x.u.FirstName,
+                //        LastName = x.u.LastName,
+                //        Address = x.u.Address,
+                //        City = x.u.City,
+                //        State = x.u.State,
+                //        PhoneNumber = x.u.PhoneNumber,
+                //        Email = x.u.Email,
+                //        DOB = x.u.DOB,
+                //        Orders = (from order in db.Orders
+                //                  where order.Id == x.o.Id
+                //                  select new UserOrder()
+                //                  {
+                //                      Id = order.Id,
+                //                      OrderDate = order.OrderDate,
+                //                      ShipName = order.ShipName,
+                //                      ShipAddress = order.ShipAddress,
+                //                      ShipEmail = order.ShipEmail,
+                //                      ShipPhoneNumber = order.ShipPhoneNumber,
+                //                      Status = order.Status
+                //                  }).ToList(),
+                //        OrderDetails = (from orderDetail in db.OrderDetails
+                //                        where orderDetail.Id == x.od.Id
+                //                        select new UserOrderDetails()
+                //                        {
+                //                            Id = orderDetail.Id,
+                //                            OrderId =orderDetail.OrderId,
+                //                            ItemId = orderDetail.ItemId,
+                //                            Quantity = orderDetail.Quantity,
+                //                            Price = orderDetail.Price,
+                //                            ItemName = x.itemname.Name
+                //                        }).ToList()
+                //    }).ToListAsync();
+                return data;
+            }
+            return null;
+        }
     }
 }
+
 
