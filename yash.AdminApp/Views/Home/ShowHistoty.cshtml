@@ -1,4 +1,4 @@
-﻿@model CommonViewModel 
+﻿@model CommonViewModel
 @{
     ViewData["Title"] = "ShowHistoty";
 }
@@ -52,33 +52,33 @@
 <figure class="highcharts-figure">
     <div id="container"></div>
     <p class="highcharts-description">
-        This chart shows how data labels can be added to the data series. This
-        can increase readability and comprehension for small datasets.
+        This chart shows the orders that has successed shipping and customer had received the product
     </p>
-    <p id="data" style="display:block;">@Html.Raw(Model.orderData)</p>
+    @*@for (var i = 0; i < Model.orderData.Count; i++)
+    {
+        <p id="@i">@Model.orderData[i].TotalOfPrice</p>
+        <p id="@i">@Model.orderData[i].OrderDate</p>
+    }
+        <p>@Model.orderData.Count</p>*@
 </figure>
-<script type="text/javascript">
-    var temp = @Html.Raw(Model.orderData);
-    //console.log(typeof(temp))
-    console.log(temp)
-    console.log(typeof (temp))
-    console.log(temp[0].OrderDate)
-    console.log(temp[0].TotalOfPrice)
-    var Dates = []
-    var Totals = []
-    //for (var i = 0; i <= temp.length; i++) {
-    //    var tempDate = new Date(temp[i].OrderDate);
-    //    var month = tempDate.getMonth();
-    //    Dates.push(month);
-    //    Totals.push(temp[i].TotalOfPrice);
-    //}
 
+<script>
+
+    var Dates = []
+    var Total = []
+    @for (var i=0;i<Model.orderData.Count;i++) {
+        <text>
+            Dates.push('@Model.orderData[i].OrderDate')
+            Total.push(@Model.orderData[i].TotalOfPrice)
+        </text>
+    }
+    console.log(Dates)
     Highcharts.chart('container', {
         chart: {
             type: 'line'
         },
         title: {
-            text: 'Monthly Revenue'
+            text: 'Monthly Average Revenue'
         },
         subtitle: {
             text: ''
@@ -100,11 +100,13 @@
             }
         },
         series: [{
-            name: 'Successed Order',
-            data: Totals
+            name: 'Success Order',
+            data: Total
         }]
     });
 </script>
+
+
 
 
 

@@ -95,7 +95,7 @@ namespace yash.AdminApp.Controllers
                 
             var data = temp.Where(x => x.Status == OrderStatus.Success).ToList();
             return View(new CommonViewModel() { 
-                orderData = JsonConvert.SerializeObject(data)
+                orderData = data
             });
         }
 
